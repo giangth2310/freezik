@@ -97,14 +97,16 @@ const music = [{
   }, {
     authorId: author[5]._id
   }],
-  image: "/music_image/doembietanhdangnghigi.jpg"
+  image: "/music_image/doembietanhdangnghigi.jpg",
+  views: 13410
 }, {
   _id: new ObjectID(),
   name: "Em dạo này",
   authors: [{
     authorId: author[1]._id
   }],
-  image: "/music_image/emdaonay.jpg"
+  image: "/music_image/emdaonay.jpg",
+  views: 10000
 }, {
   _id: new ObjectID(),
   name: "Em không thể",
@@ -113,14 +115,16 @@ const music = [{
   }, {
     authorId: author[6]._id
   }],
-  image: "/music_image/emkhongthe.jpg"
+  image: "/music_image/emkhongthe.jpg",
+  views: 150000
 }, {
   _id: new ObjectID(),
   name: "Say you do",
   authors: [{
     authorId: author[2]._id
   }],
-  image: "/music_image/sayyoudo.jpg"
+  image: "/music_image/sayyoudo.jpg",
+  views: 1234
 }, {
   _id: new ObjectID(),
   name: "Vô tình",
@@ -129,42 +133,48 @@ const music = [{
   }, {
     authorId: author[8]._id
   }],
-  image: "/music_image/votinh.jpg"
+  image: "/music_image/votinh.jpg",
+  views: 123
 }, {
   _id: new ObjectID(),
   name: "Lạ lùng",
   authors: [{
     authorId: author[3]._id
   }],
-  image: "/music_image/lalung.jpg"
+  image: "/music_image/lalung.jpg",
+  views: 11111
 }, {
   _id: new ObjectID(),
   name: "Thanh xuân",
   authors: [{
     authorId: author[9]._id
   }],
-  image: "/music_image/thanhxuan.jpg"
+  image: "/music_image/thanhxuan.jpg",
+  views: 11233
 }, {
   _id: new ObjectID(),
   name: "Từ ngày em đến",
   authors: [{
     authorId: author[9]._id
   }],
-  image: "/music_image/tungayemden.jpg"
+  image: "/music_image/tungayemden.jpg",
+  views: 10000
 }, {
   _id: new ObjectID(),
   name: "Hongkong1",
   authors: [{
     authorId: author[10]._id
   }],
-  image: "/music_image/hongkong1.jpg"
+  image: "/music_image/hongkong1.jpg",
+  views: 12341
 }, {
   _id: new ObjectID(),
   name: "Yêu 5",
   authors: [{
     authorId: author[11]._id
   }],
-  image: "/music_image/yeu5.jpg"
+  image: "/music_image/yeu5.jpg",
+  views: 100012
 }, {
   _id: new ObjectID(),
   name: "Hồn trôi",
@@ -180,7 +190,8 @@ const music = [{
   authors: [{
     authorId: author[4]._id
   }],
-  image: "/music_image/cothe.jpg"
+  image: "/music_image/cothe.jpg",
+  views: 100
 }];
 
 Author.deleteMany({}).then(() => {

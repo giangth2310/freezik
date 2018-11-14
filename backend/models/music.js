@@ -17,8 +17,16 @@ const MusicSchema = mongoose.Schema({
   image: {
     type: String,
     required: false
+  },
+  views: {
+    type: Number,
+    default: 0
   }
 });
+
+MusicSchema.statics.getPopularSongs = () => {
+  return Music.find().sort('views');
+}
 
 const Music = mongoose.model('musics', MusicSchema);
 

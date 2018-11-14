@@ -19,6 +19,10 @@ const AuthorSchema = mongoose.Schema({
   }
 });
 
+
+AuthorSchema.statics.getAll = () => {
+  return Author.find().select('-password -__v'); 
+}
 const Author = mongoose.model('authors', AuthorSchema);
 
 module.exports = {

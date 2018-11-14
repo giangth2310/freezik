@@ -1,9 +1,9 @@
-# freezik
-
 # Project title
+
 Freezik
 
-# Tech used
+## Tech used
+
 ReactJS
 NodeJS
 

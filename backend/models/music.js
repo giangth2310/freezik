@@ -7,13 +7,11 @@ const MusicSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  authors: [{
-    authorId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'authors'
-    }
-  }],
+  authors: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'authors'
+  },
   image: {
     type: String,
     required: false
@@ -21,11 +19,15 @@ const MusicSchema = mongoose.Schema({
   views: {
     type: Number,
     default: 0
+  },
+  artist: {
+    type: String,
+    require: false
   }
 });
 
 MusicSchema.statics.getPopularSongs = () => {
-  return Music.find().sort('views');
+  return Music.find().sort({views: -1}).select('-__v');
 }
 
 const Music = mongoose.model('musics', MusicSchema);

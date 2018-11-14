@@ -14,14 +14,23 @@ To run server, go to backend folder:
 ```bash
 $ cd /freezik/backend
 ```
-Install dependencies:
+Install dependencies, start the server:
 ```bash
 $ npm install
-```
-Start the server:
-```bash
 $ npm start
 ```
+Server run on port 5000
+
+To run client, go to fronted folder:
+```bash
+$ cd /freezik/front
+```
+Install dependencies and start client:
+```bash
+$ npm install
+$ npm start
+```
+Client run on port 3000
 
 # Tests
 To run the test suite, first install the dependencies, then run npm test:

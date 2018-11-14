@@ -26,19 +26,19 @@ router.get('/home/top-authors', (req, res) => {
   res.send([
     {
       "author_name": "Đen",
-      "author_image": "/public/den_image.png"
+      "author_avatar": "/public/den_image.png"
     }, {
       "author_name": "Ngọt",
-      "author_image": "/public/ngot_image.png"
+      "author_avatar": "/public/ngot_image.png"
     }, {
       "author_name": "Tiên Tiên",
-      "author_image": "/public/tientien_image.png"
+      "author_avatar": "/public/tientien_image.png"
     }, {
       "author_name": "Vũ",
-      "author_image": "/public/tientien_image.png"
+      "author_avatar": "/public/tientien_image.png"
     }, {
       "author_name": "Cá Hồi Hoang",
-      "author_image": "/public/cahoihoang_image.png"
+      "author_avatar": "/public/cahoihoang_image.png"
     }
   ]);
 });
@@ -115,6 +115,10 @@ router.get('/home/recommended-songs', (req, res) => {
       "music_artist": "Cá hồi hoang"
     }
   ]);
+});
+
+router.get('my-favorite', (req, res) => {
+  res.send();
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -14,11 +15,17 @@ app.use((req, res, next) => {
   next();
 });
 
+const MONGODB_URI = "mongodb://dinhgiang11:dinhgiang1198@ds025802.mlab.com:25802/freezik";
+
+// mongoose.Promise = global.Promise;
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+require('./seed.js');
+
 app.use('/public', express.static(__dirname + '/public'));
 
 app.use('/api', router);
 
-
-app.listen(3000, () => {
-  console.log('Server is up on port ', 3000);
+app.listen(5000, () => {
+  console.log('Server is up on port ', 5000);
 })

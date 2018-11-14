@@ -95,7 +95,7 @@ const music = [{
   authors: {
     authorId: author[0]._id
   },
-  image: "http://localhost:5000/publichttp://localhost:5000/publichttp://localhost:5000/publichttp://localhost:5000/publichttp://localhost:5000/publichttp://localhost:5000/public/music_image/doembietanhdangnghigi.jpg",
+  image: "http://localhost:5000/public/music_image/doembietanhdangnghigi.jpg",
   views: 13410,
   artist: "Đen x JustaTee"
 }, {
@@ -104,7 +104,7 @@ const music = [{
   authors: {
     authorId: author[1]._id
   },
-  image: "http://localhost:5000/publichttp://localhost:5000/publichttp://localhost:5000/public/music_image/emdaonay.jpg",
+  image: "http://localhost:5000/public/music_image/emdaonay.jpg",
   views: 10000,
   artist: "Ngọt"
 }, {

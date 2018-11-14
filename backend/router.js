@@ -29,43 +29,7 @@ router.get('/home/top-authors', author.getTopAuthors);
 
 router.get('/home/popular-songs', music.getPopularSongs);
 
-router.get('/home/recommended-songs', (req, res) => {
-  res.send([
-    {
-      "music_name": "Đố em biết anh đang nghĩ gì",
-      "music_image": "/public/doembietanhdangnghigi_image.png",
-      "music_artist": "Đen x JustaTee"
-    }, {
-      "music_name": "Em dạo này",
-      "music_image": "/public/emdaonay_image.png",
-      "music_artist": "Ngọt"
-    }, {
-      "music_name": "Say you do",
-      "music_image": "/public/sayyoudo_image.png",
-      "music_artist": "Tiên Tiên"
-    }, {
-      "music_name": "Vô tình",
-      "music_image": "/public/votinh_image.png",
-      "music_artist": "Hoaprox x Xesi"
-    }, {
-      "music_name": "Thanh xuân",
-      "music_image": "/public/thanhxuan_image.png",
-      "music_artist": "Dalab"
-    }, {
-      "music_name": "Lạ lùng",
-      "music_image": "/public/lalung_image.png",
-      "music_artist": "Vũ"
-    }, {
-      "music_name": "Hồn trôi",
-      "music_image": "/public/hontroi_image.png",
-      "music_artist": "Yun x Dr A"
-    }, {
-      "music_name": "Có thể",
-      "music_image": "/public/cothe_image.png",
-      "music_artist": "Cá hồi hoang"
-    }
-  ]);
-});
+router.get('/home/recommended-songs', music.getRecommendedSongs);
 
 router.get('my-favorite', (req, res) => {
   res.send();

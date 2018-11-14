@@ -48,6 +48,7 @@ AuthorSchema.statics.getTopAuthors = () => {
     }
   ]);
 }
+
 const Author = mongoose.model('authors', AuthorSchema);
 
 module.exports = {

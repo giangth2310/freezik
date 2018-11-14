@@ -27,11 +27,20 @@ const MusicSchema = mongoose.Schema({
 });
 
 MusicSchema.statics.getPopularSongs = () => {
-  return Music.find().sort({views: -1}).select('-__v');
-}
+  return Music.aggregate([
+  {
+    $sort: { views: -1 }
+  }, {
+    $limit: 10
+  }])
+};
+
+MusicSchema.statics.getRecommendedSongs = () => {
+  return Music.find().limit(8);
+};
 
 const Music = mongoose.model('musics', MusicSchema);
 
 module.exports = {
   Music
-}
+};

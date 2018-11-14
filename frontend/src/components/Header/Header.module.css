@@ -1,0 +1,85 @@
+.container {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+}
+
+.searchBar {
+  height: 32px;
+  width: 400px;
+  position: relative;
+}
+
+.searchBar > input {
+  height: 100%;
+  width: 100%;
+  padding: 0px 34px 0px 10px;
+  margin-left: 20px;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+}
+
+.searchBar > span {
+  color: inherit;
+  position: absolute;
+  right: -10px;
+  top: 4px;
+  color: #c4c4c4;
+}
+
+.searchBar > input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #2196f3;
+  border: 1px solid #2196f3;
+}
+
+.right {
+  width: 190px;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login {
+  color: #31E8E8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.login:hover {
+  background: rgba(196, 196, 196, 0.2);
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 16px;
+  background: #31E8E8;
+  color: white;
+}
+
+.signup:hover {
+  background: rgb(48, 219, 219);
+}

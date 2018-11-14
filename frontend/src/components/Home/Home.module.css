@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.left {
+  display: flex;
+  flex-flow: column;
+  width: 800px;
+}
+
+.topAuthors {
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 2px solid #31E8E8;
+  padding-bottom: 5px;
+}

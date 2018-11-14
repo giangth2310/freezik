@@ -7,7 +7,7 @@ const MusicSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  authors: {
+  authorId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'authors'

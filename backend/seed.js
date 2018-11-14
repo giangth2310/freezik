@@ -92,107 +92,83 @@ const author = [{
 const music = [{
   _id: new ObjectID(),
   name: "Đố em biết anh đang nghĩ gì",
-  authors: {
-    authorId: author[0]._id
-  },
+  authorId: author[0]._id,
   image: "http://localhost:5000/public/music_image/doembietanhdangnghigi.jpg",
   views: 13410,
   artist: "Đen x JustaTee"
 }, {
   _id: new ObjectID(),
   name: "Em dạo này",
-  authors: {
-    authorId: author[1]._id
-  },
+  authorId: author[1]._id,
   image: "http://localhost:5000/public/music_image/emdaonay.jpg",
   views: 10000,
   artist: "Ngọt"
 }, {
   _id: new ObjectID(),
   name: "Em không thể",
-  authors: {
-    authorId: author[2]._id
-  },
+  authorId: author[2]._id,
   image: "http://localhost:5000/public/music_image/emkhongthe.jpg",
   views: 150000,
   artist: "Tiên Tiên x Touliver"
 }, {
   _id: new ObjectID(),
   name: "Say you do",
-  authors: {
-    authorId: author[2]._id
-  },
+  authorId: author[2]._id,
   image: "http://localhost:5000/public/music_image/sayyoudo.jpg",
   views: 1234,
   artist: "Tiên Tiên"
 }, {
   _id: new ObjectID(),
   name: "Vô tình",
-  authors: {
-    authorId: author[7]._id
-  },
+  authorId: author[7]._id,
   image: "http://localhost:5000/public/music_image/votinh.jpg",
   views: 123,
   artist: "Hoaprox x Xesi"
 }, {
   _id: new ObjectID(),
   name: "Lạ lùng",
-  authors: {
-    authorId: author[3]._id
-  },
+  authorId: author[3]._id,
   image: "http://localhost:5000/public/music_image/lalung.jpg",
   views: 11111,
   artist: "Vũ"
 }, {
   _id: new ObjectID(),
   name: "Thanh xuân",
-  authors: {
-    authorId: author[9]._id
-  },
+  authorId: author[9]._id,
   image: "http://localhost:5000/public/music_image/thanhxuan.jpg",
   views: 11233,
   artist: "Dalab"
 }, {
   _id: new ObjectID(),
   name: "Từ ngày em đến",
-  authors: {
-    authorId: author[9]._id
-  },
+  authorId: author[9]._id,
   image: "http://localhost:5000/public/music_image/tungayemden.jpg",
   views: 10000,
   artist: "Dalab"
 }, {
   _id: new ObjectID(),
   name: "Hongkong1",
-  authors: {
-    authorId: author[10]._id
-  },
+  authorId: author[10]._id,
   image: "http://localhost:5000/public/music_image/hongkong1.jpg",
   views: 12341,
   artist: "Nguyễn Trọng Tài"
 }, {
   _id: new ObjectID(),
   name: "Yêu 5",
-  authors: {
-    authorId: author[11]._id
-  },
+  authorId: author[11]._id,
   image: "http://localhost:5000/public/music_image/yeu5.jpg",
   views: 100012,
   artist: "Rhymastic"
 }, {
   _id: new ObjectID(),
   name: "Hồn trôi",
-  authors: {
-    authorId: author[12]._id
-  },
+  authorId: author[12]._id,
   image: "http://localhost:5000/public/music_image/hontroi.jpg",
   artist: "Yun x Dr A"
 }, {
   _id: new ObjectID(),
   name: "Có thể",
-  authors: {
-    authorId: author[4]._id
-  },
+  authorId: author[4]._id,
   image: "http://localhost:5000/public/music_image/cothe.jpg",
   views: 100,
   artist: "Cá Hồi Hoang"

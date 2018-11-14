@@ -6,13 +6,13 @@ const { Music } = require('./models/music.js');
 const author = [{
   _id: new ObjectID(),
   name: "Đen",
-  avatar: "http://localhost:5000/publichttp://localhost:5000/public/author_avatar/den.jpg",
+  avatar: "http://localhost:5000/public/author_avatar/den.jpg",
   email: "",
   password: ""
 }, {
   _id: new ObjectID(),
   name: "Ngọt",
-  avatar: "http://localhost:5000/publichttp://localhost:5000/public/author_avatar/ngot.jpg",
+  avatar: "ttp://localhost:5000/public/author_avatar/ngot.jpg",
   email: "",
   password: ""
 }, {

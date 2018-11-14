@@ -2,7 +2,7 @@ const { Author } = require('../models/author.js');
 
 const getTopAuthors = async (req, res) => {
   try {
-    const result = await Author.getAll();
+    const result = await Author.getTopAuthors();
     
     res.send(result);
   } catch (error) {

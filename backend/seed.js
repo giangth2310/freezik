@@ -12,7 +12,7 @@ const author = [{
 }, {
   _id: new ObjectID(),
   name: "Ngọt",
-  avatar: "ttp://localhost:5000/public/author_avatar/ngot.jpg",
+  avatar: "http://localhost:5000/public/author_avatar/ngot.jpg",
   email: "",
   password: ""
 }, {
@@ -116,7 +116,7 @@ const music = [{
   authorId: author[2]._id,
   image: "http://localhost:5000/public/music_image/sayyoudo.jpg",
   views: 1234,
-  artist: "Tiên Tiên"
+  artist: "Tiên Tiên"
 }, {
   _id: new ObjectID(),
   name: "Vô tình",

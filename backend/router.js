@@ -6,14 +6,12 @@ const author = require('./controllers/author.js');
 const music = require('./controllers/music.js');
 
 router.get('/music', (req, res) => {
-  console.log(req.query.id);
   res.set('content-type', 'audio/mp3');
   res.set('accept-ranges', 'bytes');
 
-  var fileId = req.query.id; 
-  var file = __dirname + '/public/musics/' + fileId + ".mp3";
+  var fileName = req.query.name; 
+  var file = __dirname + '/public/musics/' + fileName + ".mp3";
   
-  console.log(file);
 	fs.exists(file,function(exists){
 		if(exists) {
 			var rstream = fs.createReadStream(file);
@@ -26,13 +24,14 @@ router.get('/music', (req, res) => {
 });
 
 router.get('/home/top-authors', author.getTopAuthors);
-
 router.get('/home/popular-songs', music.getPopularSongs);
-
 router.get('/home/recommended-songs', music.getRecommendedSongs);
 
 router.get('my-favorite', (req, res) => {
   res.send();
 });
+
+router.post('/login', author.login);
+router.post('/sign-up', author.signup);
 
 module.exports = router;

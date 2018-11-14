@@ -7,38 +7,38 @@ const author = [{
   _id: new ObjectID(),
   name: "Đen",
   avatar: "http://localhost:5000/public/author_avatar/den.jpg",
-  email: "",
-  password: ""
+  email: "den@gmail.com",
+  password: "den"
 }, {
   _id: new ObjectID(),
   name: "Ngọt",
   avatar: "http://localhost:5000/public/author_avatar/ngot.jpg",
-  email: "",
-  password: ""
+  email: "ngot@gmail.com",
+  password: "ngot"
 }, {
   _id: new ObjectID(),
   name: "Tiên Tiên",
   avatar: "http://localhost:5000/public/author_avatar/tientien.jpg",
-  email: "",
-  password: ""
+  email: "tientien@gmail.com",
+  password: "tientien"
 }, {
   _id: new ObjectID(),
   name: "Vũ",
   avatar: "http://localhost:5000/public/author_avatar/vu.jpg",
-  email: "",
-  password: ""
+  email: "vu@gmail.com",
+  password: "vu"
 }, {
   _id: new ObjectID(),
   name: "Cá Hồi Hoang",
   avatar: "http://localhost:5000/public/author_avatar/cahoihoang.jpg",
-  email: "",
-  password: ""
+  email: "cahoihoang@gmail.com",
+  password: "cahoihoang"
 }, {
   _id: new ObjectID(),
   name: "JustaTee",
   avatar: "http://localhost:5000/public/author_avatar/justatee.jpg",
-  email: "",
-  password: ""
+  email: "justatee@gmail.com",
+  password: "justatee"
 }, {
   _id: new ObjectID(),
   name: "Touliver",

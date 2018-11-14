@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const AuthorSchema = mongoose.Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
-  },
+  // _id: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  // },
   name: {
     type: String,
-    required: true
+    required: false
   },
   avatar: {
     type: String,
@@ -48,6 +48,14 @@ AuthorSchema.statics.getTopAuthors = () => {
     }
   ]);
 }
+
+AuthorSchema.statics.findAuthor = (email, password) => {
+  return Author.findOne({ 'email': email, 'password': password}).select("-__v -password");
+};
+
+AuthorSchema.statics.addAuthor = (author) => {
+  return new Author(author).save();
+};
 
 const Author = mongoose.model('authors', AuthorSchema);
 

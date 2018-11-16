@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 
+const storage = require('./storage.js');
 const author = require('./controllers/author.js');
 const music = require('./controllers/music.js');
 
@@ -33,5 +34,8 @@ router.get('my-favorite', (req, res) => {
 
 router.post('/login', author.login);
 router.post('/sign-up', author.signup);
+
+router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
+router.put('/change-password', author.changePassword);
 
 module.exports = router;

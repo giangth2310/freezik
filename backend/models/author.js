@@ -57,8 +57,26 @@ AuthorSchema.statics.addAuthor = (author) => {
   return new Author(author).save();
 };
 
+AuthorSchema.statics.changeProfile = (author) => {
+  return Author.updateOne({
+    _id: author._id
+  }, {
+    email: author.email,
+    name: author.name,
+    avatar: author.avatar
+  })
+};
+
+AuthorSchema.statics.changePassword = (author) => {
+  return Author.updateOne({
+    _id: author._id
+  }, {
+    password: author.password
+  })
+};
+
 const Author = mongoose.model('authors', AuthorSchema);
 
 module.exports = {
   Author
-}
+};

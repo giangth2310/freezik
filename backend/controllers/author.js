@@ -1,4 +1,5 @@
 const { Author } = require('../models/author.js');
+const domain = "http://localhost:5000/";
 
 const getTopAuthors = async (req, res) => {
   try {
@@ -37,8 +38,39 @@ const signup = async (req, res) => {
   }
 };
 
+const changeProfile = async (req, res) => {
+  try {
+    const author = req.body;
+    author.avatar = domain + req.file.path;
+    const result = await Author.changeProfile(author);
+    
+    if (!result.nModified) {
+      throw new Error("can not find this author")
+    }
+    res.send({message: "updated"});
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
+const changePassword = async (req, res) => {
+  try {
+    const author = req.body;
+    const result = await Author.changePassword(author);
+    
+    if (!result.nModified) {
+      throw new Error("can not find this author")
+    }
+    res.send({message: "updated"});
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+}
+
 module.exports = {
   getTopAuthors,
   login,
-  signup
-}
+  signup,
+  changeProfile,
+  changePassword
+};

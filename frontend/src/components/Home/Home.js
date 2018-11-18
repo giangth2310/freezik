@@ -5,11 +5,13 @@ import axios from 'axios';
 import Author from './Author/Author';
 import AuthorLoader from './AuthorLoader/AuthorLoader';
 import Grid from '@material-ui/core/Grid';
+import Song from './Song/Song';
+import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
   state = {
     topAuthors: [{}, {}, {}, {}, {}],
-    recommendedSongs: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+    recommendedSongs: [],
     popularSongs: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
   }
 
@@ -23,6 +25,7 @@ class Home extends Component {
       .catch(err => console.log(err))
     axios.get('/home/recommended-songs')
       .then(resp => {
+        console.log(resp.data);
         this.setState({
           recommendedSongs: resp.data
         })
@@ -36,6 +39,12 @@ class Home extends Component {
         })
       })
       .catch(err => console.log(err))
+  }
+
+  onPlayMusic = (id) => {
+    if (id) {
+      this.props.history.push(`/play/music/${id}`);
+    } 
   }
 
   render() {
@@ -62,17 +71,7 @@ class Home extends Component {
             {this.state.recommendedSongs.map((el, index) => {
               return (
                 <Grid key={index} item xs={3}>
-                  <div className={classes.song}>
-                    <div className={classes.songImg} style={{
-                      background: `url(${el.image}) no-repeat 50% 50%`,
-                    }}></div>
-                    <div className={classes.songName}>
-                      {el.name}
-                    </div>
-                    <div className={classes.artist}>
-                      {el.artist}
-                    </div>
-                  </div>
+                  <Song {...el}></Song>
                 </Grid>
               )
             })}
@@ -84,7 +83,7 @@ class Home extends Component {
           </div>
           {this.state.popularSongs.map((el, index) => {
             return (
-              <div key={index} className={classes.popularItem}>
+              <div key={index} className={classes.popularItem} onClick={() => this.onPlayMusic(el._id)}>
                 <div className={classes.number}>
                   <span>
                     {index + 1}
@@ -107,4 +106,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

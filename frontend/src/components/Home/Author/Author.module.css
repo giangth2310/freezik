@@ -3,6 +3,7 @@
   height: 150px;
   display: flex;
   flex-flow: column;
+  cursor: pointer;
 }
 
 .avatar {

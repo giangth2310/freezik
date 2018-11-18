@@ -27,6 +27,9 @@ const login = async (req, res) => {
 const signup = async (req, res) => {
   try {
     const author = req.body;
+    author.avatar = "http://localhost:5000/public/author_avatar/default_avatar.jpg";
+    author.name = req.body.email.split("@gmail.com")[0];
+
     const result = await Author.addAuthor(author);
     if (!result) {
       throw new Error("Signup failed")

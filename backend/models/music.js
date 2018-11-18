@@ -23,6 +23,9 @@ const MusicSchema = mongoose.Schema({
   artist: {
     type: String,
     require: false
+  },
+  fileName: {
+    type: String
   }
 });
 
@@ -33,6 +36,10 @@ MusicSchema.statics.getPopularSongs = () => {
   }, {
     $limit: 10
   }])
+};
+
+MusicSchema.statics.findMusicById = (musicId) => {
+  return Music.findById(musicId);
 };
 
 MusicSchema.statics.getRecommendedSongs = () => {

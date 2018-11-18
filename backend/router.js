@@ -2,26 +2,34 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 
+const { Music } = require('./models/music.js')
+
 const storage = require('./storage.js');
 const author = require('./controllers/author.js');
 const music = require('./controllers/music.js');
 
-router.get('/music', (req, res) => {
-  res.set('content-type', 'audio/mp3');
-  res.set('accept-ranges', 'bytes');
-
-  var fileName = req.query.name; 
-  var file = __dirname + '/public/musics/' + fileName + ".mp3";
-  
-	fs.exists(file,function(exists){
-		if(exists) {
-			var rstream = fs.createReadStream(file);
-			rstream.pipe(res);
-		} else {
-			res.send("404");
-			res.end();
-		}
-	});
+router.get('/music', async (req, res) => {
+	try {
+		res.set('content-type', 'audio/mp3');
+		res.set('accept-ranges', 'bytes');
+	
+		var musicId = req.query._id;
+		var music = await Music.findMusicById(musicId);
+		
+		var file = __dirname + '/public/musics/' + music.fileName;
+		
+		fs.exists(file,function(exists){
+			if(exists) {
+				var rstream = fs.createReadStream(file);
+				rstream.pipe(res);
+			} else {
+				res.send("can not find this music");
+				res.end();
+			}
+		});
+	} catch (error) {
+		res.status(400).send({message: error.message});
+	}
 });
 
 router.get('/home/top-authors', author.getTopAuthors);

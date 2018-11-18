@@ -95,83 +95,95 @@ const music = [{
   authorId: author[0]._id,
   image: "http://localhost:5000/public/music_image/doembietanhdangnghigi.jpg",
   views: 13410,
-  artist: "Đen x JustaTee"
+  artist: "Đen x JustaTee",
+  fileName: "doembietanhdangnghigi.mp3"
 }, {
   _id: new ObjectID(),
   name: "Em dạo này",
   authorId: author[1]._id,
   image: "http://localhost:5000/public/music_image/emdaonay.jpg",
   views: 10000,
-  artist: "Ngọt"
+  artist: "Ngọt",
+  fileName: "emdaonay.mp3"
 }, {
   _id: new ObjectID(),
   name: "Em không thể",
   authorId: author[2]._id,
   image: "http://localhost:5000/public/music_image/emkhongthe.jpg",
   views: 150000,
-  artist: "Tiên Tiên x Touliver"
+  artist: "Tiên Tiên x Touliver",
+  fileName: "emkhongthe.mp3"
 }, {
   _id: new ObjectID(),
   name: "Say you do",
   authorId: author[2]._id,
   image: "http://localhost:5000/public/music_image/sayyoudo.jpg",
   views: 1234,
-  artist: "Tiên Tiên"
+  artist: "Tiên Tiên",
+  fileName: "sayyoudo.mp3"
 }, {
   _id: new ObjectID(),
   name: "Vô tình",
   authorId: author[7]._id,
   image: "http://localhost:5000/public/music_image/votinh.jpg",
   views: 123,
-  artist: "Hoaprox x Xesi"
+  artist: "Hoaprox x Xesi",
+  fileName: "votinh.mp3"
 }, {
   _id: new ObjectID(),
   name: "Lạ lùng",
   authorId: author[3]._id,
   image: "http://localhost:5000/public/music_image/lalung.jpg",
   views: 11111,
-  artist: "Vũ"
+  artist: "Vũ",
+  fileName: "lalung.mp3"
 }, {
   _id: new ObjectID(),
   name: "Thanh xuân",
   authorId: author[9]._id,
   image: "http://localhost:5000/public/music_image/thanhxuan.jpg",
   views: 11233,
-  artist: "Dalab"
+  artist: "Dalab",
+  fileName: "thanhxuan.mp3"
 }, {
   _id: new ObjectID(),
   name: "Từ ngày em đến",
   authorId: author[9]._id,
   image: "http://localhost:5000/public/music_image/tungayemden.jpg",
   views: 10000,
-  artist: "Dalab"
+  artist: "Dalab",
+  fileName: "tungayemden.mp3"
 }, {
   _id: new ObjectID(),
   name: "Hongkong1",
   authorId: author[10]._id,
   image: "http://localhost:5000/public/music_image/hongkong1.jpg",
   views: 12341,
-  artist: "Nguyễn Trọng Tài"
+  artist: "Nguyễn Trọng Tài",
+  fileName: "hongkong1.mp3"
 }, {
   _id: new ObjectID(),
   name: "Yêu 5",
   authorId: author[11]._id,
   image: "http://localhost:5000/public/music_image/yeu5.jpg",
   views: 100012,
-  artist: "Rhymastic"
+  artist: "Rhymastic",
+  fileName: "yeu5.mp3"
 }, {
   _id: new ObjectID(),
   name: "Hồn trôi",
   authorId: author[12]._id,
   image: "http://localhost:5000/public/music_image/hontroi.jpg",
-  artist: "Yun x Dr A"
+  artist: "Yun x Dr A",
+  fileName: "hontroi.mp3"
 }, {
   _id: new ObjectID(),
   name: "Có thể",
   authorId: author[4]._id,
   image: "http://localhost:5000/public/music_image/cothe.jpg",
   views: 100,
-  artist: "Cá Hồi Hoang"
+  artist: "Cá Hồi Hoang",
+  fileName: "cothe.mp3"
 }];
 
 Author.deleteMany({}).then(() => {

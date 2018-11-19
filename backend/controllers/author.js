@@ -48,6 +48,7 @@ const changeProfile = async (req, res) => {
       author.avatar = domain + req.file.path;
     }
     const result = await Author.changeProfile(author);
+    console.log(result);
     
     if (!result.nModified) {
       throw new Error("can not find this author")

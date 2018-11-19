@@ -58,7 +58,9 @@ AuthorSchema.statics.addAuthor = (author) => {
 };
 
 AuthorSchema.statics.changeProfile = (author) => {
-  if (author.avatar = null) {
+  console.log(author);
+  if (!author.avatar) {
+    console.log("sdfa");
     return Author.updateOne({
       _id: author._id
     }, {

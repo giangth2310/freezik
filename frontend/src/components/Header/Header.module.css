@@ -86,13 +86,21 @@
 
 .signupDialog {
   width: 400px;
-  height: 600px;
+  height: 620px;
   display: flex;
   flex-flow: column;
   align-items: center;
   padding: 0 50px;
   justify-content: space-evenly;
   font-family: 'Roboto', sans-serif;
+}
+
+.signupForm {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 200px;
 }
 
 .signupHeader {
@@ -210,4 +218,38 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.account > span {
+  margin: 0 0 0 10px;
+  font-weight: 500;
+}
+
+.accountMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  width: 100%;
+  right: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.accountMenu > .navLink {
+  padding: 5px 10px;
+}
+
+.navLink > span:nth-child(1) {
+  color: #c4c4c4;
+}
+
+.navLink > span:nth-child(2) {
+  margin-left: 10px;
 }

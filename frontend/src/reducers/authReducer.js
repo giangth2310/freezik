@@ -17,6 +17,12 @@ if (user) {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.LOGOUT:
+      return {
+        isAuthenticated: false,
+        showLogin: false,
+        showSignup: false
+      }
     case actionTypes.LOGIN_SUCCESS:
       return {
         ...state,

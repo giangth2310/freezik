@@ -1,13 +1,15 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import { Component } from 'react';
 import classes from './Header.module.css';
 import LogoImg from '../../images/logo.png';
 import Icon from '@material-ui/core/Icon';
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
-import { DialogActions } from '@material-ui/core';
+import { DialogActions, Avatar, MenuItem, Paper, Divider } from '@material-ui/core';
 import axios from 'axios';
 import GoogleLogo from '../../images/google.svg';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   state = {
@@ -15,7 +17,8 @@ class Header extends Component {
     signupPassword: '',
     signupRePassword: '',
     loginEmail: '',
-    loginPassword: ''
+    loginPassword: '',
+    showAccountMenu: false
   }
 
   onLoginClick = () => {
@@ -53,7 +56,8 @@ class Header extends Component {
     })
   }
 
-  onSubmitSignup = () => {
+  onSubmitSignup = e => {
+    e.preventDefault();
     axios.post('/sign-up', {
       email: this.state.signupEmail,
       password: this.state.signupPassword
@@ -81,6 +85,29 @@ class Header extends Component {
     this.props.login(this.state.loginEmail, this.state.loginPassword);
   }
 
+  onMockupLogin = () => {
+    this.props.login('tientien@gmail.com', 'tientien');
+  }
+
+  toggleAccountMenu = () => {
+    this.setState((prevState) => {
+      return {
+        showAccountMenu: !prevState.showAccountMenu
+      }
+    })
+  }
+
+  closeAccountMenu = () => {
+    this.setState({
+      showAccountMenu: false
+    })
+  }
+
+  logout = () => {
+    this.closeAccountMenu();
+    this.props.logout();
+  }
+
   render() {
     const signupDialog = (
       <Dialog open={this.props.auth.showSignup} 
@@ -92,31 +119,35 @@ class Header extends Component {
         <div className={classes.signupHeader}>
           Sign up to Freezik
         </div>
-        <TextField variant='outlined'
-          value={this.state.signupEmail}
-          id='email'
-          label='Email'
-          onChange={this.onSignupEmailChange}
-          fullWidth></TextField>
-        <TextField variant='outlined'
-          value={this.state.signupPassword}
-          type='password'
-          id='password'
-          label='Password'
-          onChange={this.onSignupPasswordChange}
-          fullWidth></TextField>
-        <TextField variant='outlined'
-          value={this.state.signupRePassword}
-          type='password'
-          id='rePassword'
-          label='Re-enter password'
-          onChange={this.onSignupRePasswordChange}
-          fullWidth></TextField>
-        <div>
+        <form onSubmit={this.onSubmitSignup} className={classes.signupForm}>
+          <TextField variant='outlined'
+            value={this.state.signupEmail}
+            id='email'
+            label='Email'
+            onChange={this.onSignupEmailChange}
+            fullWidth></TextField>
+          <TextField variant='outlined'
+            value={this.state.signupPassword}
+            type='password'
+            id='password'
+            label='Password'
+            onChange={this.onSignupPasswordChange}
+            fullWidth></TextField>
+          <TextField variant='outlined'
+            value={this.state.signupRePassword}
+            type='password'
+            id='rePassword'
+            label='Re-enter password'
+            onChange={this.onSignupRePasswordChange}
+            fullWidth></TextField>
+          <button style={{display: 'none'}}
+            ref={signupSubmitButton => this.signupSubmitButton = signupSubmitButton}></button>
+        </form>
+        <div style={{padding: '0 5px'}}>
           By clicking sign up you are agreeing to The terms of use and Privacy policy sign up
         </div>
         <DialogActions>
-          <div className={classes.signupSubmit} onClick={this.onSubmitSignup}>
+          <div className={classes.signupSubmit} onClick={() => this.signupSubmitButton.click()}>
             <span>Sign up</span>
           </div>
         </DialogActions>
@@ -164,7 +195,7 @@ class Header extends Component {
           </span>
         </div>
         <div className={classes.thirdParty}>
-          <div className={classes.facebook}>
+          <div className={classes.facebook} onClick={this.onMockupLogin}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216" className={classes.facebookLogo} color="#FFFFFF"><path fill="#FFFFFF" d="
           M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9
           11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1
@@ -173,7 +204,7 @@ class Header extends Component {
           11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path></svg>
             <span>Facebook</span>
           </div>
-          <div className={classes.google}>
+          <div className={classes.google} onClick={this.onMockupLogin}>
             <img src={GoogleLogo} alt='Google' className={classes.googleLogo}></img>
             <span>Google</span>
           </div>
@@ -181,16 +212,67 @@ class Header extends Component {
       </Dialog>
     )
 
-    const accountMenu = (
-      <div>
-        nani
-      </div>
+    const account = (
+      <ClickAwayListener onClickAway={this.closeAccountMenu}>
+        <div className={classes.account}>
+          <Avatar src={this.props.auth.avatar}></Avatar>
+          <span >{this.props.auth.name}</span>
+          <Icon onClick={this.toggleAccountMenu}>
+            keyboard_arrow_down
+          </Icon>
+          <Paper className={`${classes.accountMenu} ${this.state.showAccountMenu ? '' : classes.hide}`}>
+            <MenuItem component={Link} to='/user/profile' onClick={this.closeAccountMenu} className={classes.navLink}>
+              <Icon>
+                person
+              </Icon>
+              <span>Profile</span>
+            </MenuItem>
+            <Divider></Divider>
+            <MenuItem component={Link} to='/user/password' onClick={this.closeAccountMenu} className={classes.navLink}>
+              <Icon>
+                vpn_key
+              </Icon>
+              <span>Password</span>
+            </MenuItem>
+            <Divider></Divider>
+            <MenuItem component={Link} to='/user/favorite' onClick={this.closeAccountMenu} className={classes.navLink}>
+              <Icon>
+                favorite
+              </Icon>
+              <span>Favorite</span>
+            </MenuItem>
+            <Divider></Divider>
+            <MenuItem component={Link} to='/user/playlist' onClick={this.closeAccountMenu} className={classes.navLink}>
+              <Icon>
+                queue_music
+              </Icon>
+              <span>Playlist</span>
+            </MenuItem>
+            <Divider></Divider>
+            <MenuItem component={Link} to='/user/upload' onClick={this.closeAccountMenu} className={classes.navLink}>
+              <Icon>
+                cloud_upload
+              </Icon>
+              <span>Upload</span>
+            </MenuItem>
+            <Divider></Divider>
+            <MenuItem component={Link} to='/' onClick={this.logout} className={classes.navLink}>
+              <Icon>
+                exit_to_app
+              </Icon>
+              <span>Log out</span>
+            </MenuItem>
+          </Paper>
+        </div>
+      </ClickAwayListener>
     )
 
     return (
       <div className={classes.container}>
         <div className={classes.left}>
-          <img src={LogoImg} alt='Freezik' className={classes.logo}></img>
+          <Link to='/'>
+            <img src={LogoImg} alt='Freezik' className={classes.logo}></img>
+          </Link>
           <div className={classes.searchBar}>
             <input placeholder='Search all music'></input>
             <Icon>
@@ -198,9 +280,8 @@ class Header extends Component {
             </Icon>
           </div>
         </div>
+        {this.props.auth.isAuthenticated ? account : (
         <div className={classes.right}>
-          {this.props.auth.isAuthenticated ? accountMenu : (
-          <Fragment>
             <div className={classes.login} onClick={this.onLoginClick}>
               <span>
                 Log in
@@ -211,9 +292,8 @@ class Header extends Component {
                 Sign up
               </span>
             </div>
-          </Fragment>
-          )}
-        </div>
+          </div>
+        )}
         {signupDialog}
         {loginDialog}
       </div>

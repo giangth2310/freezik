@@ -45,3 +45,10 @@ export const loginSuccess = (payload) => {
     payload
   }
 }
+
+export const logout = () => {
+  localStorage.removeItem('user');
+  return {
+    type: actionTypes.LOGOUT
+  }
+}

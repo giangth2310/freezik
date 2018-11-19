@@ -58,6 +58,14 @@ AuthorSchema.statics.addAuthor = (author) => {
 };
 
 AuthorSchema.statics.changeProfile = (author) => {
+  if (author.avatar = null) {
+    return Author.updateOne({
+      _id: author._id
+    }, {
+      email: author.email,
+      name: author.name,
+    })
+  }
   return Author.updateOne({
     _id: author._id
   }, {

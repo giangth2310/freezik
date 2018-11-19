@@ -96,7 +96,8 @@ const music = [{
   image: "http://localhost:5000/public/music_image/doembietanhdangnghigi.jpg",
   views: 13410,
   artist: "Đen x JustaTee",
-  fileName: "doembietanhdangnghigi.mp3"
+  fileName: "doembietanhdangnghigi.mp3",
+  comments: []
 }, {
   _id: new ObjectID(),
   name: "Em dạo này",

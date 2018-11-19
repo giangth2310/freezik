@@ -44,7 +44,9 @@ const signup = async (req, res) => {
 const changeProfile = async (req, res) => {
   try {
     const author = req.body;
-    author.avatar = domain + req.file.path;
+    if (author.file) {
+      author.avatar = domain + req.file.path;
+    }
     const result = await Author.changeProfile(author);
     
     if (!result.nModified) {

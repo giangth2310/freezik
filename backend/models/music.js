@@ -26,7 +26,16 @@ const MusicSchema = mongoose.Schema({
   },
   fileName: {
     type: String
-  }
+  },
+  comments: [{
+    authorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'authors'
+    },
+    content: {
+      type: String,
+    }
+  }]
 });
 
 MusicSchema.statics.getPopularSongs = () => {

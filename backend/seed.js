@@ -97,7 +97,8 @@ const music = [{
   views: 13410,
   artist: "Đen x JustaTee",
   fileName: "doembietanhdangnghigi.mp3",
-  comments: []
+  comments: [{
+  }]
 }, {
   _id: new ObjectID(),
   name: "Em dạo này",

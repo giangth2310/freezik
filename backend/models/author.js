@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
 const AuthorSchema = mongoose.Schema({
-  // _id: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  // },
   name: {
     type: String,
     required: false
@@ -58,17 +55,15 @@ AuthorSchema.statics.addAuthor = (author) => {
 };
 
 AuthorSchema.statics.changeProfile = (author) => {
-  console.log(author);
   if (!author.avatar) {
-    console.log("sdfa");
-    return Author.updateOne({
+    return Author.findOneAndUpdate({
       _id: author._id
     }, {
       email: author.email,
-      name: author.name,
+      name: author.name
     })
   }
-  return Author.updateOne({
+  return Author.findOneAndUpdate({
     _id: author._id
   }, {
     email: author.email,

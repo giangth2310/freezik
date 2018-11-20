@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const { Author } = require('./author.js');
-
 const MusicSchema = mongoose.Schema({
   name: {
     type: String,
@@ -44,7 +42,16 @@ MusicSchema.statics.getPopularSongs = () => {
     $sort: { views: -1 }
   }, {
     $limit: 10
-  }])
+  }, {
+    $project: {
+      name: 1,
+      authorId: 1,
+      image: 1,
+      views: 1,
+      artist: 1,
+      fileName: 1
+    }
+  }]);
 };
 
 MusicSchema.statics.findMusicById = (musicId) => {
@@ -52,7 +59,18 @@ MusicSchema.statics.findMusicById = (musicId) => {
 };
 
 MusicSchema.statics.getRecommendedSongs = () => {
-  return Music.find().limit(8);
+  return Music.find().limit(8).select("-comments -__v");
+};
+
+MusicSchema.statics.getComments = (musicId) => {
+  // return Music.aggregate([{
+  //   $lookup: {
+  //     from: 'authors',
+  //     localField: '_',
+  //     foreignField:,
+  //     as: 'authors'
+  //   }
+  // }])
 };
 
 const Music = mongoose.model('musics', MusicSchema);

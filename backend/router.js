@@ -35,6 +35,7 @@ router.get('/music', async (req, res) => {
 router.get('/home/top-authors', author.getTopAuthors);
 router.get('/home/popular-songs', music.getPopularSongs);
 router.get('/home/recommended-songs', music.getRecommendedSongs);
+router.get('/comments', music.getComments);
 
 router.get('my-favorite', (req, res) => {
   res.send();

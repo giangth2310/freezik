@@ -98,6 +98,20 @@ const music = [{
   artist: "Đen x JustaTee",
   fileName: "doembietanhdangnghigi.mp3",
   comments: [{
+    authorId: author[1]._id,
+    content: "hat rat hay"
+  }, {
+    authorId: author[4]._id,
+    content: "ahihi"
+  }, {
+    authorId: author[4]._id,
+    content: "cung binh thuong"
+  }, {
+    authorId: author[7]._id,
+    content: "hay"
+  }, {
+    authorId: author[8]._id,
+    content: "tuyet cmn voi"
   }]
 }, {
   _id: new ObjectID(),
@@ -106,7 +120,23 @@ const music = [{
   image: "http://localhost:5000/public/music_image/emdaonay.jpg",
   views: 10000,
   artist: "Ngọt",
-  fileName: "emdaonay.mp3"
+  fileName: "emdaonay.mp3",
+  comments: [{
+    authorId: author[3]._id,
+    content: "hat hay"
+  }, {
+    authorId: author[2]._id,
+    content: "ahihi"
+  }, {
+    authorId: author[1]._id,
+    content: "cung binh thuong"
+  }, {
+    authorId: author[7]._id,
+    content: "hay"
+  }, {
+    authorId: author[8]._id,
+    content: "hat ra chi la hay"
+  }]
 }, {
   _id: new ObjectID(),
   name: "Em không thể",
@@ -114,7 +144,23 @@ const music = [{
   image: "http://localhost:5000/public/music_image/emkhongthe.jpg",
   views: 150000,
   artist: "Tiên Tiên x Touliver",
-  fileName: "emkhongthe.mp3"
+  fileName: "emkhongthe.mp3",
+  comments: [{
+    authorId: author[3]._id,
+    content: "nghe mai ko chan"
+  }, {
+    authorId: author[9]._id,
+    content: "ahihi"
+  }, {
+    authorId: author[10]._id,
+    content: "cung binh thuong"
+  }, {
+    authorId: author[1]._id,
+    content: "hay"
+  }, {
+    authorId: author[10]._id,
+    content: "tuyet cmn voi"
+  }]
 }, {
   _id: new ObjectID(),
   name: "Say you do",
@@ -170,7 +216,14 @@ const music = [{
   image: "http://localhost:5000/public/music_image/yeu5.jpg",
   views: 100012,
   artist: "Rhymastic",
-  fileName: "yeu5.mp3"
+  fileName: "yeu5.mp3",
+  comments: [{
+    authorId: author[11]._id,
+    content: "yeu"
+  }, {
+    authorId: author[10]._id,
+    content: "hihi"
+  }]
 }, {
   _id: new ObjectID(),
   name: "Hồn trôi",

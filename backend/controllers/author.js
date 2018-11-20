@@ -47,13 +47,13 @@ const changeProfile = async (req, res) => {
     if (author.file) {
       author.avatar = domain + req.file.path;
     }
-    const result = await Author.changeProfile(author);
-    console.log(result);
     
-    if (!result.nModified) {
-      throw new Error("can not find this author")
+    const result = await Author.changeProfile(author);
+
+    if (!result) {
+      throw new Error("can not find this author");
     }
-    res.send({message: "updated"});
+    res.send(result);
   } catch (error) {
     res.status(400).send({message: error.message});
   }

@@ -71,6 +71,8 @@ AuthorSchema.statics.changeProfile = (author) => {
     email: author.email,
     name: author.name,
     avatar: author.avatar
+  }, {
+    new: true
   })
 };
 

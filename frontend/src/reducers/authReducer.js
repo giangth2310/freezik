@@ -17,6 +17,11 @@ if (user) {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SAVE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        ...action.payload
+      }
     case actionTypes.LOGOUT:
       return {
         isAuthenticated: false,

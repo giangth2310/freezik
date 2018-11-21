@@ -234,7 +234,7 @@
 .accountMenu {
   position: absolute;
   top: calc(100% + 10px);
-  width: 100%;
+  width: 150px;
   right: 0;
 }
 

@@ -43,6 +43,7 @@ class Profile extends Component {
         <div className={classes.content}>
           <form className={classes.form} onSubmit={this.onSave}>
             <TextField
+              disabled
               label='Email'
               value={this.state.email}
               variant='outlined'

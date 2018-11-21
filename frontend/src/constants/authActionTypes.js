@@ -4,3 +4,4 @@ export const SHOW_SIGN_UP = 'SHOW_SIGN_UP';
 export const HIDE_SIGN_UP = 'HIDE_SIGN_UP';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
+export const SAVE_PROFILE_SUCCESS = 'SAVE_PROFILE_SUCCESS';

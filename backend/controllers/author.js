@@ -46,6 +46,7 @@ const changeProfile = async (req, res) => {
     const author = req.body;
     if (req.file) {
       author.avatar = domain + req.file.path;
+      author.avatar = author.avatar.replace(/\\/g, "/");
     }
     
     const result = await Author.changeProfile(author);

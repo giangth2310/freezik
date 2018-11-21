@@ -7,13 +7,31 @@ class Profile extends Component {
   state = {
     email: '',
     name: '',
-    avatar: null
+    avatar: null,
+    avatarUrl: ''
+  }
+
+  onAvatarChange = e => {
+    if (e.target.files.length === 0) {
+      return
+    }
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.setState({
+        avatarUrl: reader.result,
+        avatar: file
+      })
+    }, false);
+
+    reader.readAsDataURL(file);
   }
 
   componentDidMount() {
     this.setState({
       email: this.props.auth.email,
-      name: this.props.auth.name
+      name: this.props.auth.name,
+      avatarUrl: this.props.auth.avatar
     })
   }
 
@@ -64,14 +82,11 @@ class Profile extends Component {
             </div>
           </form>
           <div className={classes.avatarForm}>
-            <div className={classes.avatar} style={{
-              background: `url(${this.props.auth.avatar}) no-repeat 50% 50%`,
-              backgroundSize: 'cover'
-            }} ></div>
+            <img src={this.state.avatarUrl} alt='avatar' className={classes.avatarImg}></img>
             <input
               style={{ display: 'none' }}
               type='file'
-              onChange={e => this.setState({avatar: e.target.files[0]})}
+              onChange={this.onAvatarChange}
               ref={node => this.avatarInput = node}></input>
             <div className={classes.avatarUpload} onClick={() => this.avatarInput.click()} >
               <span>Upload new picture</span>

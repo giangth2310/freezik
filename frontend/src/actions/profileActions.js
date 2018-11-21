@@ -13,7 +13,6 @@ export const saveProfile = (email, name, avatar) => {
     formData.append('_id', user._id);
     axios.put('/profile', formData)
     .then(resp => {
-      console.log(resp.data)
       dispatch(saveProfileSuccess(resp.data));
     })
     .catch(err => console.log(err))

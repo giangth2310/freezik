@@ -63,14 +63,18 @@ MusicSchema.statics.getRecommendedSongs = () => {
 };
 
 MusicSchema.statics.getComments = (musicId) => {
-  // return Music.aggregate([{
-  //   $lookup: {
-  //     from: 'authors',
-  //     localField: '_',
-  //     foreignField:,
-  //     as: 'authors'
-  //   }
-  // }])
+  return Music.aggregate([
+    {
+      $lookup: {
+        from: 'authors',
+        localField: 'comments.authorId',
+        foreignField: '_id',
+        as: 'authors'
+      }
+    }, {
+      $unwind: '$authors'
+    }
+  ])
 };
 
 const Music = mongoose.model('musics', MusicSchema);

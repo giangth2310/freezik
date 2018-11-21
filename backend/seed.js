@@ -2,6 +2,7 @@ var { ObjectID } = require('mongodb');
 
 const { Author } = require('./models/author.js');
 const { Music } = require('./models/music.js');
+const { Playlist } = require('./models/playlist.js');
 
 const author = [{
   _id: new ObjectID(),
@@ -241,10 +242,21 @@ const music = [{
   fileName: "cothe.mp3"
 }];
 
+const playlist = [{
+  name: "favorite"
+}, {
+  name: "my music",
+  thumbnail: "http://localhost:5000/public/music_thumbnails/mymusic.jpg"
+}]
+
 Author.deleteMany({}).then(() => {
   Author.insertMany(author);
 });
 
 Music.deleteMany({}).then(() => {
   Music.insertMany(music);
+});
+
+Playlist.deleteMany({}).then(() => {
+  Playlist.insertMany(playlist);
 });

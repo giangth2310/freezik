@@ -45,6 +45,6 @@ router.post('/login', author.login);
 router.post('/sign-up', author.signup);
 
 router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
-router.put('/change-password', author.changePassword);
+router.put('/password', author.changePassword);
 
 module.exports = router;

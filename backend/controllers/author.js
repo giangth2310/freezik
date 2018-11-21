@@ -65,8 +65,8 @@ const changePassword = async (req, res) => {
     const author = req.body;
     const result = await Author.changePassword(author);
     
-    if (!result.nModified) {
-      throw new Error("can not find this author")
+    if (!result.n) {
+      throw new Error("current password was wrong");
     }
     res.send({message: "updated"});
   } catch (error) {

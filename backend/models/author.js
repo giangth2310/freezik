@@ -61,6 +61,8 @@ AuthorSchema.statics.changeProfile = (author) => {
     }, {
       email: author.email,
       name: author.name
+    }, {
+      new: true
     })
   }
   return Author.findOneAndUpdate({

@@ -59,7 +59,6 @@ AuthorSchema.statics.changeProfile = (author) => {
     return Author.findOneAndUpdate({
       _id: author._id
     }, {
-      email: author.email,
       name: author.name
     }, {
       new: true
@@ -68,7 +67,6 @@ AuthorSchema.statics.changeProfile = (author) => {
   return Author.findOneAndUpdate({
     _id: author._id
   }, {
-    email: author.email,
     name: author.name,
     avatar: author.avatar
   }, {

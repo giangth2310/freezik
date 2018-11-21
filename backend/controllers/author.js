@@ -44,7 +44,7 @@ const signup = async (req, res) => {
 const changeProfile = async (req, res) => {
   try {
     const author = req.body;
-    if (author.file) {
+    if (req.file) {
       author.avatar = domain + req.file.path;
     }
     

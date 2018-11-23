@@ -11,7 +11,12 @@ const getPopularSongs = async (req, res) => {
 
 const getRecommendedSongs = async (req, res) => {
   try {
-    const result = await Music.getRecommendedSongs();
+    if (req.query._id) {
+      var result = await Music.getRecommendedSongsById(req.query._id);
+    } else {
+      var result = await Music.getRecommendedSongs();
+    }
+
     res.send(result);
   } catch (error) {
     res.status(400).send({message: error.message});

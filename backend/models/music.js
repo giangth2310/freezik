@@ -62,6 +62,10 @@ MusicSchema.statics.getRecommendedSongs = () => {
   return Music.find().limit(8).select("-comments -__v");
 };
 
+MusicSchema.statics.getRecommendedSongsById = (musicId) => {
+  return Music.find({_id : { $ne: musicId }}).limit(8).select("-comments -__v");
+};
+
 MusicSchema.statics.getComments = (musicId) => {
   return Music.aggregate([
     {
@@ -73,6 +77,12 @@ MusicSchema.statics.getComments = (musicId) => {
       }
     }, {
       $unwind: '$authors'
+    }, {
+      $unwind: '$comments'
+    // }, {
+    //   $group: {
+    //     _id: "$_id",
+    //   }
     }
   ])
 };

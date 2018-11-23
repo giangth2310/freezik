@@ -68,6 +68,11 @@ const changePassword = async (req, res) => {
     if (!result.n) {
       throw new Error("current password was wrong");
     }
+
+    if (!result.nModified) {
+      throw new Error("new password must be different current password");
+    }
+
     res.send({message: "updated"});
   } catch (error) {
     res.status(400).send({message: error.message});

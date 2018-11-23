@@ -77,7 +77,7 @@ AuthorSchema.statics.changeProfile = (author) => {
 AuthorSchema.statics.changePassword = (author) => {
   return Author.updateOne({
     _id: author._id,
-    password: author.currentPassword
+    password: author.curPassword
   }, {
     password: author.newPassword
   })

@@ -18,7 +18,6 @@ app.use((req, res, next) => {
 
 const MONGODB_URI = "mongodb://dinhgiang11:dinhgiang1198@ds025802.mlab.com:25802/freezik";
 
-// mongoose.Promise = global.Promise;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 require('./seed.js');

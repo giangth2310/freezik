@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const MusicSchema = mongoose.Schema({
   name: {
     type: String,
@@ -66,25 +67,19 @@ MusicSchema.statics.getRecommendedSongsById = (musicId) => {
   return Music.find({_id : { $ne: musicId }}).limit(8).select("-comments -__v");
 };
 
-MusicSchema.statics.getComments = (musicId) => {
-  return Music.aggregate([
-    {
-      $lookup: {
-        from: 'authors',
-        localField: 'comments.authorId',
-        foreignField: '_id',
-        as: 'authors'
-      }
-    }, {
-      $unwind: '$authors'
-    }, {
-      $unwind: '$comments'
-    // }, {
-    //   $group: {
-    //     _id: "$_id",
-    //   }
-    }
-  ])
+MusicSchema.statics.getComments = async (musicId) => {
+  let result = await Music.findById(musicId);
+  
+  // for (var i = 0; i < result.comments.length; i++) {
+  //   const result = await Author.findById(result.comments[i].authorId);
+    // result.comments[i] = {name : res.name, avatar : res.avatar }
+    // result.comments[i]["name"] = "hihi";
+    // var pair = {name: "hhihi"}
+    // result.comments[i] = { ...result.comments[i], ...pair}
+    // console.log(result.comments[i]);
+  // }
+  
+  return result;
 };
 
 const Music = mongoose.model('musics', MusicSchema);

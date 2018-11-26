@@ -68,18 +68,7 @@ MusicSchema.statics.getRecommendedSongsById = (musicId) => {
 };
 
 MusicSchema.statics.getComments = async (musicId) => {
-  let result = await Music.findById(musicId);
-  
-  // for (var i = 0; i < result.comments.length; i++) {
-  //   const result = await Author.findById(result.comments[i].authorId);
-    // result.comments[i] = {name : res.name, avatar : res.avatar }
-    // result.comments[i]["name"] = "hihi";
-    // var pair = {name: "hhihi"}
-    // result.comments[i] = { ...result.comments[i], ...pair}
-    // console.log(result.comments[i]);
-  // }
-  
-  return result;
+  return result = await Music.findById(musicId);
 };
 
 const Music = mongoose.model('musics', MusicSchema);

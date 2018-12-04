@@ -67,9 +67,13 @@ MusicSchema.statics.getRecommendedSongsById = (musicId) => {
   return Music.find({_id : { $ne: musicId }}).limit(8).select("-comments -__v");
 };
 
-MusicSchema.statics.getComments = async (musicId) => {
-  return result = await Music.findById(musicId);
+MusicSchema.statics.getComments = (musicId) => {
+  return Music.findById(musicId);
 };
+
+MusicSchema.statics.upload = (music) => {
+  return new Music(music).save();
+}
 
 const Music = mongoose.model('musics', MusicSchema);
 

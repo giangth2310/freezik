@@ -43,6 +43,7 @@ router.get('my-favorite', (req, res) => {
 
 router.post('/login', author.login);
 router.post('/sign-up', author.signup);
+router.post('/musics', storage.uploadMusic, music.uploadMusic);
 
 router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
 router.put('/password', author.changePassword);

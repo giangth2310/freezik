@@ -33,6 +33,7 @@ router.get('/music', async (req, res) => {
 	}
 });
 
+router.get('/musicData', music.getMusic);
 router.get('/home/top-authors', author.getTopAuthors);
 router.get('/home/popular-songs', music.getPopularSongs);
 router.get('/home/recommended-songs', music.getRecommendedSongs);

@@ -68,9 +68,19 @@ const uploadMusic = async (req, res) => {
   }
 };
 
+const getMusic = async (req, res) => {
+  try {
+    const music = await Music.findMusicById(req.query._id)
+    res.send(music);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+}
+
 module.exports = {
   getPopularSongs,
   getRecommendedSongs,
   getComments,
-  uploadMusic
+  uploadMusic,
+  getMusic
 };

@@ -243,10 +243,22 @@ const music = [{
 }];
 
 const playlist = [{
-  name: "favorite"
+  name: "favorite",
+  thumbnail: "http://localhost:5000/public/playlist_thumbnails/favorite.jpg",
+  musics: [{
+    musicId: music[0]._id
+  }, {
+    musicId: music[2]._id
+  }, {
+    musicId: music[4]._id
+  }, {
+    musicId: music[6]._id
+  }, {
+    musicId: music[8]._id
+  }]
 }, {
   name: "my music",
-  thumbnail: "http://localhost:5000/public/music_thumbnails/mymusic.jpg"
+  thumbnail: "http://localhost:5000/public/playlist_thumbnails/mymusic.jpg"
 }]
 
 Author.deleteMany({}).then(() => {

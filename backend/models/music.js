@@ -56,7 +56,7 @@ MusicSchema.statics.getPopularSongs = () => {
 };
 
 MusicSchema.statics.findMusicById = (musicId) => {
-  return Music.findById(musicId);
+  return Music.findById(musicId).select('-__v');
 };
 
 MusicSchema.statics.getRecommendedSongs = () => {

@@ -7,6 +7,7 @@ const { Music } = require('./models/music.js')
 const storage = require('./storage.js');
 const author = require('./controllers/author.js');
 const music = require('./controllers/music.js');
+const playlist = require('./controllers/playlist.js');
 
 router.get('/music', async (req, res) => {
 	try {
@@ -36,6 +37,7 @@ router.get('/home/top-authors', author.getTopAuthors);
 router.get('/home/popular-songs', music.getPopularSongs);
 router.get('/home/recommended-songs', music.getRecommendedSongs);
 router.get('/comments', music.getComments);
+router.get('/favorite', playlist.getFavorite);
 
 router.get('my-favorite', (req, res) => {
   res.send();

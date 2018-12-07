@@ -41,8 +41,9 @@ const getComments = async (req, res) => {
       music.comments[i].date = moment().format();
     }
 
-    
-    res.send(music);
+    const result = music.comments;
+
+    res.send(result);
   } catch (error) {
     res.status(400).send({message: error.message});
   }

@@ -21,6 +21,10 @@ PlaylistSchema.statics.getFavorite = () => {
   return Playlist.findOne({name: "favorite"}).select('-__v');
 };
 
+PlaylistSchema.statics.getAll = () => {
+  return Playlist.find().select('-__v');
+};
+
 const Playlist = mongoose.model('playlists', PlaylistSchema);
 
 module.exports = {

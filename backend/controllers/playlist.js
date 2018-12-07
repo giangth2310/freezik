@@ -31,7 +31,19 @@ const getAll = async (req, res) => {
   }
 };
 
+const addToFavorite = async (req, res) => {
+  try {
+    const music = req.body;
+    const result = await Playlist.addToFavorite(music);
+    
+    res.send(result);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
 module.exports = {
   getFavorite,
-  getAll
+  getAll,
+  addToFavorite
 };

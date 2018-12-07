@@ -244,6 +244,7 @@ const music = [{
 
 const playlist = [{
   name: "favorite",
+  authorId: author[2]._id,
   thumbnail: "http://localhost:5000/public/playlist_thumbnails/favorite.jpg",
   musics: [{
     musicId: music[0]._id
@@ -257,7 +258,17 @@ const playlist = [{
     musicId: music[8]._id
   }]
 }, {
+  name: "favorite",
+  authorId: author[0]._id,
+  thumbnail: "http://localhost:5000/public/playlist_thumbnails/favorite.jpg",
+  musics: [{
+    musicId: music[0]._id
+  }, {
+    musicId: music[2]._id
+  }]
+}, {
   name: "my music",
+  authorId: author[0]._id,
   thumbnail: "http://localhost:5000/public/playlist_thumbnails/mymusic.jpg",
   musics: [{
     musicId: music[10]._id

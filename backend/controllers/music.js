@@ -2,6 +2,7 @@ const moment = require('moment')
 
 const { Music } = require('../models/music.js');
 const { Author } = require('../models/author.js');
+const { Playlist } = require('../models/playlist.js');
 
 const domain = "http://localhost:5000/";
 
@@ -71,7 +72,22 @@ const uploadMusic = async (req, res) => {
 
 const getMusic = async (req, res) => {
   try {
-    const music = await Music.findMusicById(req.query._id)
+    var music = await Music.findMusicById(req.query.musicId);
+    
+    const pl = await Playlist.isOfFavorite(req.query.musicId, req.query.authorId);
+    
+    if (!pl) {
+      music = {
+        ...music._doc,
+        favorite: "false"
+      }
+    } else {
+      music = {
+        ...music._doc,
+        favorite: "true"
+      }
+    }
+
     res.send(music);
   } catch (error) {
     res.status(400).send({message: error.message});

@@ -3,29 +3,37 @@ const { Music } = require('../models/music.js');
 
 const getFavorite = async (req, res) => {
   try {
-    var favorite = await Playlist.getFavorite();
+    var favorite = await Playlist.getFavorite(req.query.authorId);
     
-    for (var i = 0; i < favorite.musics.length; i++) {
-      var music = await Music.findMusicById(favorite.musics[i].musicId).select("-comments");
-      favorite.musics[i] = music;    
+    if (favorite) {
+      for (var i = 0; i < favorite.musics.length; i++) {
+        var music = await Music.findMusicById(favorite.musics[i].musicId).select("-comments");
+        favorite.musics[i] = music;    
+      }
     }
+    
     res.send(favorite);
   } catch (error) {
     res.status(400).send({message: error.message});
   }
 };
 
-const getAll = async (req, res) => {
+const getPlaylists = async (req, res) => {
   try {
-    var playlists = await Playlist.getAll();
-    for (var i = 0; i < playlists.length; i++) {
-      for (var j = 0; j < playlists[i].musics.length; j++) {
-        
-        var music = await Music.findMusicById(playlists[i].musics[j].musicId).select("-comments");
-        playlists[i].musics[j] = music;    
+    if (!req.query.playlistId) {
+      var playlists = await Playlist.getAll(req.query.authorId);
+      res.send(playlists);
+    } else {
+      var playlist = await Playlist.getPlaylist(req.query.authorId, req.query.playlistId);
+      for (var i = 0; i < playlist.length; i++) {
+        for (var j = 0; j < playlist[i].musics.length; j++) {
+          
+          var music = await Music.findMusicById(playlist[i].musics[j].musicId).select("-comments");
+          playlist[i].musics[j] = music;    
+        }
       }
+      res.send(playlist);
     }
-    res.send(playlists);
   } catch (error) {
     res.status(400).send({message: error.message});
   }
@@ -44,6 +52,6 @@ const addToFavorite = async (req, res) => {
 
 module.exports = {
   getFavorite,
-  getAll,
+  getPlaylists,
   addToFavorite
 };

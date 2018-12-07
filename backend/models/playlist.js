@@ -21,12 +21,16 @@ const PlaylistSchema = mongoose.Schema({
   }]
 });
 
-PlaylistSchema.statics.getFavorite = () => {
-  return Playlist.findOne({name: "favorite"}).select('-__v');
+PlaylistSchema.statics.getFavorite = (authorId) => {
+  return Playlist.findOne({name: "favorite", "authorId": authorId}).select('-__v');
 };
 
-PlaylistSchema.statics.getAll = () => {
-  return Playlist.find().select('-__v');
+PlaylistSchema.statics.getAll = (authorId) => {
+  return Playlist.find({"authorId": authorId}).select('-__v -musics');
+};
+
+PlaylistSchema.statics.getPlaylist = (authorId, playlistId) => {
+  return Playlist.find({"authorId": authorId, "_id": playlistId});
 };
 
 PlaylistSchema.statics.addToFavorite = async (music) => {

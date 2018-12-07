@@ -6,7 +6,7 @@ import Profile from '../../containers/ProfileContainer';
 import Favorite from './Favorite/Favorite';
 import Upload from './Upload/Upload';
 import Playlist from './Playlist/Playlist';
-import Password from './Password/Password';
+import Password from '../../containers/PasswordContainer';
 
 class PrivateRoute extends Component {
   render() {

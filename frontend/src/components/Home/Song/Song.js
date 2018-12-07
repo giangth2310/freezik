@@ -27,10 +27,8 @@ class Song extends Component {
   render() {
     return (
       <div className={classes.song} onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
-        <div className={classes.songImg} style={{
-          background: `url(${this.props.image}) no-repeat 50% 50%`,
-          backgroundSize: 'cover'
-        }}>
+        <div className={classes.imgContainer}>
+          <img alt={this.props.name} src={this.props.image} className={classes.songImg} ></img>
           {this.state.hover ? (<div className={classes.playIcon}>
             <Icon>
               play_circle_filled_white

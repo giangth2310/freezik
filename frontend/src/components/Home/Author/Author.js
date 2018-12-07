@@ -6,12 +6,7 @@ class Author extends Component {
   render() {
     return (
       <div className={classes.container}>
-        <div className={classes.avatar} 
-          style={{
-            background: `url(${this.props.avatar})`,
-            backgroundSize: 'cover'
-          }} >
-        </div>
+        <img alt='avatar' src={this.props.avatar} className={classes.avatar}></img>
         <div className={classes.authorName}>
           <span>
             {this.props.name}

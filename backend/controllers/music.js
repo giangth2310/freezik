@@ -76,12 +76,23 @@ const getMusic = async (req, res) => {
   } catch (error) {
     res.status(400).send({message: error.message});
   }
-}
+};
+
+const addComment = async (req, res) => {
+  try {
+    const comment = req.body;
+    const result = await Music.addComment(comment);
+    res.send(result.comments);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
 
 module.exports = {
   getPopularSongs,
   getRecommendedSongs,
   getComments,
   uploadMusic,
-  getMusic
+  getMusic,
+  addComment
 };

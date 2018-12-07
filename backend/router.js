@@ -44,6 +44,7 @@ router.get('/playlists', playlist.getAll);
 router.post('/login', author.login);
 router.post('/sign-up', author.signup);
 router.post('/musics', storage.uploadMusic, music.uploadMusic);
+router.post('/comments', music.addComment);
 
 router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
 router.put('/password', author.changePassword);

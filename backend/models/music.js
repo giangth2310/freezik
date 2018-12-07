@@ -73,6 +73,12 @@ MusicSchema.statics.getComments = (musicId) => {
 
 MusicSchema.statics.upload = (music) => {
   return new Music(music).save();
+};
+
+MusicSchema.statics.addComment = async (comment) => {
+  var music = await Music.findById(comment.musicId);
+  music.comments.push({"authorId": comment.authorId, "content": comment.content});
+  return new Music(music).save();
 }
 
 const Music = mongoose.model('musics', MusicSchema);

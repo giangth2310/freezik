@@ -1,9 +1,11 @@
 import * as actionTypes from '../constants/authActionTypes';
+import DefaultAvatar from '../images/default_avatar.jpg';
 
 let initialState = {
   isAuthenticated: false,
   showLogin: false,
-  showSignup: false
+  showSignup: false,
+  avatar: DefaultAvatar
 }
 
 const user = JSON.parse(localStorage.getItem('user'));

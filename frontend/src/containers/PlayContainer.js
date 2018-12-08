@@ -1,5 +1,6 @@
 import Play from '../components/Play/Play';
 import { connect } from 'react-redux';
+import * as authActions from '../actions/authActions';
 
 const mapStateToProps = state => {
   return {
@@ -7,4 +8,6 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Play);
+export default connect(mapStateToProps, {
+  ...authActions
+})(Play);

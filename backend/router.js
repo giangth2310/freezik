@@ -46,8 +46,11 @@ router.post('/sign-up', author.signup);
 router.post('/musics', storage.uploadMusic, music.uploadMusic);
 router.post('/comments', music.addComment);
 router.post('/favorite', playlist.addToFavorite);
+router.post('/playlists', playlist.addPlaylist);
 
 router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
 router.put('/password', author.changePassword);
+
+router.delete('/playlists', playlist.deletePlaylist);
 
 module.exports = router;

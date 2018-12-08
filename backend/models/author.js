@@ -51,7 +51,7 @@ AuthorSchema.statics.findAuthor = (email, password) => {
 };
 
 AuthorSchema.statics.findAuthorById = (authorId) => {
-  return Author.findById(authorId);
+  return Author.findById(authorId).select('-__v');
 };
 
 AuthorSchema.statics.addAuthor = (author) => {

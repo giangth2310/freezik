@@ -68,7 +68,7 @@ MusicSchema.statics.getRecommendedSongsById = (musicId) => {
 };
 
 MusicSchema.statics.getComments = (musicId) => {
-  return Music.findById(musicId);
+  return Music.findById(musicId).select('-__v');
 };
 
 MusicSchema.statics.upload = (music) => {

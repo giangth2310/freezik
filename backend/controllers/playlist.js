@@ -27,7 +27,6 @@ const getPlaylists = async (req, res) => {
       var playlist = await Playlist.getPlaylist(req.query.authorId, req.query.playlistId);
       for (var i = 0; i < playlist.length; i++) {
         for (var j = 0; j < playlist[i].musics.length; j++) {
-          
           var music = await Music.findMusicById(playlist[i].musics[j].musicId).select("-comments");
           playlist[i].musics[j] = music;    
         }
@@ -50,8 +49,48 @@ const addToFavorite = async (req, res) => {
   }
 };
 
+const addPlaylist = async (req, res) => {
+  try {
+    const playlist = req.body;
+    const result = await Playlist.addPlaylist(playlist);
+    
+    res.send(result);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
+const deletePlaylist = async (req, res) => {
+  try {
+    var playlist = new Object();
+    playlist._id = req.query.playlistId;
+    playlist.authorId = req.query.authorId;
+
+    if (!req.query.musicId) {
+      await Playlist.deletePlaylist(playlist);
+    } else {
+      await Playlist.deleteMusic(playlist, req.query.musicId);
+    }
+
+    var pl = await Playlist.getPlaylist(req.query.authorId, req.query.playlistId);
+    
+    for (var i = 0; i < pl.length; i++) {
+      for (var j = 0; j < pl[i].musics.length; j++) {
+        var music = await Music.findMusicById(pl[i].musics[j].musicId).select("-comments");
+        pl[i].musics[j] = music;    
+      }
+    }
+
+    res.send(pl);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
 module.exports = {
   getFavorite,
   getPlaylists,
-  addToFavorite
+  addToFavorite,
+  addPlaylist,
+  deletePlaylist
 };

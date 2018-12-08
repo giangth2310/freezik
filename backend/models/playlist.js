@@ -60,6 +60,18 @@ PlaylistSchema.statics.isOfFavorite = (musicId, authorId) => {
   return Playlist.findOne({"authorId": authorId, "musics.musicId": musicId, "name": "favorite"});
 };
 
+PlaylistSchema.statics.addPlaylist = (playlist) => {
+  return new Playlist(playlist).save();
+};
+
+PlaylistSchema.statics.deletePlaylist = (playlist) => {
+  return Playlist.deleteOne(playlist);
+}; 
+
+PlaylistSchema.statics.deleteMusic = (playlist, musicId) => {
+  return Playlist.updateOne({"_id": playlist._id, "authorId": playlist.authorId}, {$pull: {"musics": {"musicId": musicId}}});
+};
+
 const Playlist = mongoose.model('playlists', PlaylistSchema);
 
 module.exports = {

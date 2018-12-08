@@ -101,8 +101,26 @@ const getMusic = async (req, res) => {
 const addComment = async (req, res) => {
   try {
     const comment = req.body;
-    const result = await Music.addComment(comment);
-    res.send(result.comments);
+    await Music.addComment(comment);
+
+    let music = await Music.getComments(req.body.musicId);
+    music = music.toJSON();
+    
+    for (var i = 0; i < music.comments.length; i++) {
+      const author = await Author.findAuthorById(music.comments[i].authorId);
+      music.comments[i].name = author.name;
+      music.comments[i].avatar = author.avatar;
+      music.comments[i].date = ObjectId(music.comments[i]._id).getTimestamp();
+    }
+    
+    music.comments.sort((a, b) => {
+      return b.date - a.date;
+    });
+
+    const result = music.comments;
+
+    res.send(result);
+    
   } catch (error) {
     res.status(400).send({message: error.message});
   }

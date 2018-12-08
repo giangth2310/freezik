@@ -1,4 +1,4 @@
-const moment = require('moment')
+var ObjectId = require('mongodb').ObjectID;
 
 const { Music } = require('../models/music.js');
 const { Author } = require('../models/author.js');
@@ -39,8 +39,12 @@ const getComments = async (req, res) => {
       const author = await Author.findAuthorById(music.comments[i].authorId);
       music.comments[i].name = author.name;
       music.comments[i].avatar = author.avatar;
-      music.comments[i].date = moment().format();
+      music.comments[i].date = ObjectId(music.comments[i]._id).getTimestamp();
     }
+    
+    music.comments.sort((a, b) => {
+      return b.date - a.date;
+    });
 
     const result = music.comments;
 

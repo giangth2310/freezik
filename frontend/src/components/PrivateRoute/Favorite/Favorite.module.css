@@ -14,3 +14,17 @@
   align-items: center;
   border-bottom: 2px solid #c4c4c4;
 }
+
+.playAll {
+  width: 100px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  background: rgba(51, 51, 51, 0.05);
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.playAll > span {
+  margin: 0 10px;
+}

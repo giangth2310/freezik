@@ -9,7 +9,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 
 class Play extends Component {
   state = {
-    recommended: [],
+    playingQueue: [],
     comments: [],
     cmtVal: '',
     playing: true,
@@ -44,16 +44,24 @@ class Play extends Component {
     .catch(err => {
       console.log(err);
     })
-
-    axios.get(`/home/recommended-songs?_id=${_id}`)
-    .then(response => {
-      this.setState({
-        recommended: response.data
+    if (!this.props.location.state) {
+      axios.get(`/home/recommended-songs?_id=${_id}`)
+      .then(response => {
+        this.setState({
+          playingQueue: response.data,
+          playingIndex: 0
+        })
       })
-    })
-    .catch(err => {
-      console.log(err);
-    })
+      .catch(err => {
+        console.log(err);
+      })
+    } else {
+      setTimeout(() => {
+        this.setState({
+          ...this.props.location.state
+        })
+      }, 0);
+    }
   }
 
   componentDidUpdate() {
@@ -86,13 +94,21 @@ class Play extends Component {
   }
 
   onSkipPrev = () => {
-    const { recommended } = this.state;
-    this.props.history.push(`/play/music/${recommended[recommended.length - 1]._id}`);
+    const { playingQueue, playingIndex } = this.state;
+    const prevIndex = Math.max(0, playingIndex - 1);
+    this.props.history.push(`/play/music/${playingQueue[prevIndex]._id}`, {
+      playingQueue: this.state.playingQueue,
+      playingIndex: prevIndex
+    });
   }
 
   onSKipNext = () => {
-    const { recommended } = this.state;
-    this.props.history.push(`/play/music/${recommended[0]._id}`);
+    const { playingQueue, playingIndex } = this.state;
+    const nextIndex = Math.min(playingQueue.length - 1, playingIndex + 1);
+    this.props.history.push(`/play/music/${playingQueue[nextIndex]._id}`, {
+      playingQueue: this.state.playingQueue,
+      playingIndex: nextIndex
+    });
   }
 
   playPause = () => {
@@ -103,8 +119,11 @@ class Play extends Component {
     })
   }
 
-  onQueueItemClick = (id) => {
-    this.props.history.push(`/play/music/${id}`);
+  onQueueItemClick = (index) => {
+    this.props.history.push(`/play/music/${this.state.playingQueue[index]._id}`, {
+      playingQueue: this.state.playingQueue,
+      playingIndex: index
+    });
   }
 
   onCmtValChange = e => {
@@ -137,6 +156,10 @@ class Play extends Component {
   }
 
   onFavorite = () => {
+    if (!this.props.auth.isAuthenticated) {
+      this.props.showLogin();
+      return;
+    }
     this.setState({
       favorite: 'true'
     })
@@ -285,21 +308,10 @@ class Play extends Component {
             Playing Queue
           </div>
           <div className={classes.queue}>
-            <div className={`${classes.playing} ${classes.queueItem}`}>
-              <Icon>play_arrow</Icon>
-              <div className={classes.itemContent}>
-                <div className={classes.itemName}>
-                  {this.state.name}
-                </div>
-                <div className={classes.itemArtist}>
-                  {this.state.artist}
-                </div>
-              </div>
-            </div>
-            {this.state.recommended.map(el => {
+            {this.state.playingQueue.map((el, index) => {
               return (
-                <div className={classes.queueItem} key={el._id} onClick={() => this.onQueueItemClick(el._id)}>
-                  <span></span>
+                <div className={`${classes.queueItem} ${index === this.state.playingIndex ? classes.playing : ''}`} key={el._id} onClick={() => this.onQueueItemClick(index)}>
+                  {index === this.state.playingIndex ? <Icon>play_arrow</Icon> : <span></span>}
                   <div className={classes.itemContent}>
                     <div className={classes.itemName}>
                       {el.name}

@@ -70,7 +70,9 @@ class Home extends Component {
           <Grid container>
             {this.state.recommendedSongs.map((el, index) => {
               return (
-                <Grid key={index} item xs={3}>
+                <Grid key={index} item xs={3} style={{
+                  padding: '0 20px'
+                }}>
                   <Song {...el}></Song>
                 </Grid>
               )

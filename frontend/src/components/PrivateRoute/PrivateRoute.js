@@ -3,7 +3,7 @@ import classes from './PrivateRoute.module.css';
 import NavigationPane from './NavigationPane/NavigationPane';
 import { Redirect, Switch, Route } from 'react-router-dom';
 import Profile from '../../containers/ProfileContainer';
-import Favorite from './Favorite/Favorite';
+import Favorite from '../../containers/FavoriteContainer';
 import Upload from './Upload/Upload';
 import Playlist from './Playlist/Playlist';
 import Password from '../../containers/PasswordContainer';

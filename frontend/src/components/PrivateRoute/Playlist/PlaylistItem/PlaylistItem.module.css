@@ -1,14 +1,13 @@
-.song {
-  height: 210px;
+.playlist {
   margin-top: 30px;
   display: flex;
   flex-flow: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   cursor: pointer;
 }
 
-.song:hover,
-.song:focus{
+.playlist:hover,
+.playlist:focus{
   color: black;
 }
 
@@ -18,18 +17,19 @@
   height: 160px;
 }
 
-.songImg {
+.thumbnail {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.songName {
+.playlistName {
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
   width: 160px;
   font-weight: 600;
+  margin-top: 10px;
 }
 
 .playIcon {
@@ -45,6 +45,18 @@
   background: rgba(51, 51, 51, 0.5)
 }
 
-.playIcon > span {
+.playIcon > span:nth-child(1) {
   font-size: 64px;
+}
+
+.edit {
+  position: absolute;
+  right: 30px;
+  top: 3px;
+}
+
+.close {
+  position: absolute;
+  right: 3px;
+  top: 3px;
 }

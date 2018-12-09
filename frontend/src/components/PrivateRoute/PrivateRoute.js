@@ -5,7 +5,7 @@ import { Redirect, Switch, Route } from 'react-router-dom';
 import Profile from '../../containers/ProfileContainer';
 import Favorite from '../../containers/FavoriteContainer';
 import Upload from './Upload/Upload';
-import Playlist from './Playlist/Playlist';
+import Playlist from '../../containers/PlaylistContainer';
 import Password from '../../containers/PasswordContainer';
 
 class PrivateRoute extends Component {

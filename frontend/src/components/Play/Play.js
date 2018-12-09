@@ -252,6 +252,7 @@ class Play extends Component {
               onProgress={this.onProgress}
               width='0'
               height='0'
+              onEnded={() => this.onSKipNext()}
               ref={player => this.player = player} ></ReactPlayer>
             <div className={classes.controller}>
               <Icon onClick={this.onSkipPrev}>skip_previous</Icon>

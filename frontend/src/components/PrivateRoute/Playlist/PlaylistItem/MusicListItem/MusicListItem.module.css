@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  border: 1px solid white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.container:hover {
+  border: 1px solid #333333;
+}
+
+.index {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+}

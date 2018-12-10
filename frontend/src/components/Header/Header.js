@@ -10,6 +10,7 @@ import axios from 'axios';
 import GoogleLogo from '../../images/google.svg';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Header extends Component {
   state = {
@@ -18,7 +19,8 @@ class Header extends Component {
     signupRePassword: '',
     loginEmail: '',
     loginPassword: '',
-    showAccountMenu: false
+    showAccountMenu: false,
+    searchVal: ''
   }
 
   onLoginClick = () => {
@@ -106,6 +108,22 @@ class Header extends Component {
   logout = () => {
     this.closeAccountMenu();
     this.props.logout();
+  }
+
+  onSearchChange = e => {
+    this.setState({
+      searchVal: e.target.value
+    })
+  }
+
+  onSearch = () => {
+    if (!this.state.searchVal) {
+      return
+    }
+    this.setState({
+      searchVal: ''
+    })
+    this.props.history.push(`/search?q=${this.state.searchVal}`);
   }
 
   render() {
@@ -274,8 +292,12 @@ class Header extends Component {
             <img src={LogoImg} alt='Freezik' className={classes.logo}></img>
           </Link>
           <div className={classes.searchBar}>
-            <input placeholder='Search all music'></input>
-            <Icon>
+            <input placeholder='Search all music' 
+              value={this.state.searchVal}
+              onChange={this.onSearchChange}></input>
+            <Icon style={{
+              cursor: 'pointer'
+            }} onClick={this.onSearch}>
               search
             </Icon>
           </div>
@@ -301,4 +323,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

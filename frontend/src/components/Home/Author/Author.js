@@ -5,7 +5,7 @@ import classes from './Author.module.css';
 class Author extends Component {
   render() {
     return (
-      <div className={classes.container}>
+      <div className={classes.container} onClick={this.props.onClick}>
         <img alt='avatar' src={this.props.avatar} className={classes.avatar}></img>
         <div className={classes.authorName}>
           <span>

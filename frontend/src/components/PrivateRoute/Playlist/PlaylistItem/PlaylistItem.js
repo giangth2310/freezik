@@ -114,7 +114,8 @@ class PlaylistItem extends Component {
     formData.append('name', this.state.name);
     axios.put(`/playlists`, formData)
     .then(response => {
-      console.log(response.data);
+      this.props.updatePlaylist(response.data);
+      this.onCloseDialog();
     })
     .catch(err => {
       console.log(err);

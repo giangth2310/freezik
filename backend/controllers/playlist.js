@@ -1,6 +1,8 @@
 const { Playlist } = require('../models/playlist.js');
 const { Music } = require('../models/music.js');
 
+const domain = "http://localhost:5000/";
+
 const getFavorite = async (req, res) => {
   try {
     var favorite = await Playlist.getFavorite(req.query.authorId);
@@ -51,9 +53,10 @@ const addToFavorite = async (req, res) => {
 
 const addPlaylist = async (req, res) => {
   try {
-    const playlist = req.body;
-    const result = await Playlist.addPlaylist(playlist);
+    var playlist = req.body;
+    playlist.thumbnail = "http://localhost:5000/public/playlist_thumbnails/mymusic.jpg";
     
+    const result = await Playlist.addPlaylist(playlist);
     res.send(result);
   } catch (error) {
     res.status(400).send({message: error.message});
@@ -87,10 +90,23 @@ const deletePlaylist = async (req, res) => {
   }
 };
 
+const updateThumnail = async (req, res) => {
+  try {
+    var thumbnail = domain + req.file.path;
+    thumbnail = thumbnail.replace(/\\/g, "/");
+
+    const result = await Playlist.updateThumbnail(thumbnail, req.body.playlistId);
+    res.send(result);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
 module.exports = {
   getFavorite,
   getPlaylists,
   addToFavorite,
   addPlaylist,
-  deletePlaylist
+  deletePlaylist,
+  updateThumnail
 };

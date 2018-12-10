@@ -51,6 +51,7 @@ router.post('/playlists', playlist.addPlaylist);
 
 router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
 router.put('/password', author.changePassword);
+router.put('/playlist-thumbnail', storage.uploadPlaylistThumbnail, playlist.updateThumnail);
 
 router.delete('/playlists', playlist.deletePlaylist);
 

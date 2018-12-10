@@ -268,7 +268,7 @@ const playlist = [{
   }]
 }, {
   name: "my music",
-  authorId: author[0]._id,
+  authorId: author[2]._id,
   thumbnail: "http://localhost:5000/public/playlist_thumbnails/mymusic.jpg",
   musics: [{
     musicId: music[10]._id

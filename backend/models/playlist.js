@@ -72,6 +72,17 @@ PlaylistSchema.statics.deleteMusic = (playlist, musicId) => {
   return Playlist.updateOne({"_id": playlist._id, "authorId": playlist.authorId}, {$pull: {"musics": {"musicId": musicId}}});
 };
 
+PlaylistSchema.statics.updateThumbnail = (thumbnail, playlistId) => {
+  return Playlist.findOneAndUpdate({
+    _id: playlistId
+  }, {
+    thumbnail: thumbnail
+  }, {
+    new: true
+  })
+  .select("-__v -musics")
+};
+
 const Playlist = mongoose.model('playlists', PlaylistSchema);
 
 module.exports = {

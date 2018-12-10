@@ -47,6 +47,10 @@ class Home extends Component {
     } 
   }
 
+  onAuthorClick = (name) => {
+    this.props.history.push(`/search?q=author:${name}`);
+  }
+
   render() {
     return (
       <div className={classes.container}>
@@ -60,7 +64,7 @@ class Home extends Component {
                 return <AuthorLoader key={index} ></AuthorLoader>
               }
               return (
-                <Author key={index} {...el} ></Author>
+                <Author key={index} {...el} onClick={() => this.onAuthorClick(el.name)} ></Author>
               )
             })}
           </div>

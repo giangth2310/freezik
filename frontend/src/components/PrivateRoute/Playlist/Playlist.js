@@ -52,6 +52,17 @@ class Playlist extends Component {
     })
   }
 
+  updatePlaylist = (index, info) => {
+    const newPlaylist = [...this.state.playlist];
+    newPlaylist[index] = {
+      ...this.state.playlist,
+      ...info
+    }
+    this.setState({
+      playlist: newPlaylist
+    })
+  }
+
   render() {
     return (
       <div className={classes.container}>
@@ -70,7 +81,8 @@ class Playlist extends Component {
               return (
                 <Grid item xs={3} key={index}>
                   <PlaylistItem {...el} userId={this.props.auth._id} 
-                    onDelete={() => this.deletePlaylist(index)} ></PlaylistItem>
+                    onDelete={() => this.deletePlaylist(index)}
+                    updatePlaylist={(info) => this.updatePlaylist(index, info)} ></PlaylistItem>
                 </Grid>
               )
             })}

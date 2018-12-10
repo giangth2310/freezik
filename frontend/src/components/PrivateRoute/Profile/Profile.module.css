@@ -69,7 +69,7 @@
 }
 
 .avatarUpload:hover {
-  background: rgba(196, 196, 196, 0.2);
+  border: 2px solid #333333;
 }
 
 .avatarImg {

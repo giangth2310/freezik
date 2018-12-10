@@ -72,11 +72,12 @@ PlaylistSchema.statics.deleteMusic = (playlist, musicId) => {
   return Playlist.updateOne({"_id": playlist._id, "authorId": playlist.authorId}, {$pull: {"musics": {"musicId": musicId}}});
 };
 
-PlaylistSchema.statics.updateThumbnail = (thumbnail, playlistId) => {
+PlaylistSchema.statics.updatePlaylist = (thumbnail, playlistId, name) => {
   return Playlist.findOneAndUpdate({
     _id: playlistId
   }, {
-    thumbnail: thumbnail
+    thumbnail: thumbnail,
+    name: name
   }, {
     new: true
   })

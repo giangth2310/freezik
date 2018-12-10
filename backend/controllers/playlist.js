@@ -89,12 +89,12 @@ const deletePlaylist = async (req, res) => {
   }
 };
 
-const updateThumnail = async (req, res) => {
+const updatePlaylist = async (req, res) => {
   try {
     var thumbnail = domain + req.file.path;
     thumbnail = thumbnail.replace(/\\/g, "/");
 
-    const result = await Playlist.updateThumbnail(thumbnail, req.body.playlistId);
+    const result = await Playlist.updatePlaylist(thumbnail, req.body.playlistId, req.body.name);
     res.send(result);
   } catch (error) {
     res.status(400).send({message: error.message});
@@ -116,6 +116,6 @@ module.exports = {
   addToFavorite,
   addPlaylist,
   deletePlaylist,
-  updateThumnail,
+  updatePlaylist,
   addMusic
 };

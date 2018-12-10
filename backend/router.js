@@ -52,7 +52,7 @@ router.post('/playlist', playlist.addMusic);
 
 router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
 router.put('/password', author.changePassword);
-router.put('/playlist-thumbnail', storage.uploadPlaylistThumbnail, playlist.updateThumnail);
+router.put('/playlists', storage.uploadPlaylistThumbnail, playlist.updatePlaylist);
 
 router.delete('/playlists', playlist.deletePlaylist);
 

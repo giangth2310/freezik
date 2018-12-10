@@ -1,17 +1,27 @@
 .container {
   display: flex;
-  border: 1px solid white;
   height: 50px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .container:hover {
-  border: 1px solid #333333;
+  background: rgba(196, 196, 196, 0.5);
 }
 
 .index {
   width: 50px;
   display: flex;
   justify-content: center;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.delete {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
 }

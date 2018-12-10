@@ -89,6 +89,38 @@ class PlaylistItem extends Component {
     })
   }
 
+  delFromPlaylist = (musicId) => {
+    this.setState(prevState => {
+      const newMusics = prevState.musics.filter(el => el._id !== musicId);
+      return {
+        musics: newMusics
+      }
+    })
+    axios.delete(`/playlists?playlistId=${this.props._id}&musicId=${musicId}`)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  onSave = () => {
+    const formData = new FormData();
+    if (this.state.newThumbnail) {
+      formData.append('thumbnail', this.state.newThumbnail, this.state.newThumbnail.name);
+    }
+    formData.append('playlistId', this.state._id);
+    formData.append('name', this.state.name);
+    axios.put(`/playlists`, formData)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   render() {
     return (
       <div className={classes.playlist} onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
@@ -127,7 +159,7 @@ class PlaylistItem extends Component {
               <div className={classes.musicList}>
                 {this.state.musics.map((el, index) => {
                   return (
-                    <MusicListItem key={index} {...el} index={index}></MusicListItem>
+                    <MusicListItem key={index} {...el} index={index} onDelete={this.delFromPlaylist}></MusicListItem>
                   )
                 })}
               </div>
@@ -135,7 +167,7 @@ class PlaylistItem extends Component {
           </DialogContent>
           <DialogActions>
             <div className={classes.closeBtn} onClick={this.onCloseDialog}>Close</div>
-            <button className={classes.saveBtn}>
+            <button className={classes.saveBtn} onClick={this.onSave}>
               Save
             </button>
           </DialogActions>

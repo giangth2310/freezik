@@ -50,9 +50,19 @@ class Play extends Component {
     if (!this.props.location.state) {
       axios.get(`/home/recommended-songs?_id=${_id}`)
       .then(response => {
+        let playingIndex = response.data.findIndex(el => el._id === _id);
+        let playingQueue = [...response.data];
+        if (playingIndex === -1) {
+          console.log(playingQueue);
+          const { artist, authorId, fileName, image, name, views,_id } = this.state;
+          playingIndex = 0;
+          playingQueue = [{
+            artist, authorId, fileName, image, name, views,_id
+          }, ...response.data];
+        }
         this.setState({
-          playingQueue: response.data,
-          playingIndex: 0
+          playingQueue,
+          playingIndex
         })
       })
       .catch(err => {
@@ -328,7 +338,7 @@ class Play extends Component {
           <div className={classes.queue}>
             {this.state.playingQueue.map((el, index) => {
               return (
-                <div className={`${classes.queueItem} ${index === this.state.playingIndex ? classes.playing : ''}`} key={el._id} onClick={() => this.onQueueItemClick(index)}>
+                <div className={`${classes.queueItem} ${index === this.state.playingIndex ? classes.playing : ''}`} key={index} onClick={() => this.onQueueItemClick(index)}>
                   {index === this.state.playingIndex ? <Icon>play_arrow</Icon> : <span></span>}
                   <div className={classes.itemContent}>
                     <div className={classes.itemName}>

@@ -67,7 +67,6 @@ const deletePlaylist = async (req, res) => {
     var playlist = new Object();
     playlist._id = req.query.playlistId;
 
-    
     if (!req.query.musicId) {
       var pl = await Playlist.getPlaylist(req.query.playlistId);
       await Playlist.deletePlaylist(playlist);

@@ -148,6 +148,42 @@ const search  = async (req, res) => {
   }
 };
 
+const getUploaded = async (req, res) => {
+  try {
+    const result = await Music.findByAuthorId(req.query.authorId).select("-comments");
+    res.send(result);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
+const updateMusic = async (req, res) => {
+  try {
+    var music = req.body;
+    if (req.file) {
+      music.image = domain + req.file.path;
+      music.image = music.image.replace(/\\/g, "/");
+    }
+    
+    const result = await Music.updateMusic(music);
+    res.send(result);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
+const deleteMusic = async (req, res) => {
+  try {
+    const result = await Music.deleteMusic(req.query.musicId);
+    if (result.n) {
+      res.send("deleted");
+    }
+    res.send(result);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
 module.exports = {
   getPopularSongs,
   getRecommendedSongs,
@@ -155,5 +191,8 @@ module.exports = {
   uploadMusic,
   getMusic,
   addComment,
-  search
+  search,
+  getUploaded,
+  updateMusic,
+  deleteMusic
 };

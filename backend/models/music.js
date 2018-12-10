@@ -96,6 +96,22 @@ MusicSchema.statics.searchByName = async (queryName) => {
   .select("-__v");
 };
 
+MusicSchema.statics.updateMusic = (music) => {
+  return Music.findOneAndUpdate({
+    "_id": music.musicId
+  }, {
+    "name": music.name,
+    "artist": music.artist,
+    "image": music.image
+  }, {
+    new: true
+  })
+};
+
+MusicSchema.statics.deleteMusic = (musicId) => {
+  return Music.deleteOne({"_id": musicId});
+};
+
 MusicSchema.index({"name": "text"});
 
 const Music = mongoose.model('musics', MusicSchema);

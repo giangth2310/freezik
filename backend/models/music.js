@@ -55,6 +55,10 @@ MusicSchema.statics.getPopularSongs = () => {
   }]);
 };
 
+MusicSchema.statics.findByAuthorId = (authorId) => {
+  return Music.find({"authorId": authorId}).select('-__v');
+};
+
 MusicSchema.statics.findMusicById = (musicId) => {
   return Music.findById(musicId).select('-__v');
 };

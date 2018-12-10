@@ -130,8 +130,15 @@ const search  = async (req, res) => {
   try {
     const query = req.query.q;
     if (query.includes("author")) {
-      const result  = await Author.searchByName(query);
-      res.send(result);
+      const authors  = await Author.searchByName(query);
+      var list = [];
+      for(var i = 0; i < authors.length; i++) {
+        const music = await Music.findByAuthorId(authors[i]._id).select("-comments");
+        for(var j = 0; j < music.length; j++) {
+          list.push(music[j])
+        }
+      }
+      res.send(list);
     } else {
       const result  = await Music.searchByName(query);
       res.send(result);

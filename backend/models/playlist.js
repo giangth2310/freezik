@@ -69,19 +69,31 @@ PlaylistSchema.statics.deletePlaylist = (playlist) => {
 }; 
 
 PlaylistSchema.statics.deleteMusic = (playlist, musicId) => {
-  return Playlist.updateOne({"_id": playlist._id, "authorId": playlist.authorId}, {$pull: {"musics": {"musicId": musicId}}});
+  return Playlist.updateOne({"_id": playlist._id}, {$pull: {"musics": {"musicId": musicId}}});
 };
 
 PlaylistSchema.statics.updatePlaylist = (thumbnail, playlistId, name) => {
+  if (thumbnail) {
+    return Playlist.findOneAndUpdate({
+      _id: playlistId
+    }, {
+      thumbnail: thumbnail,
+      name: name
+    }, {
+      new: true
+    })
+    .select("-__v -musics")
+  }
+
   return Playlist.findOneAndUpdate({
     _id: playlistId
   }, {
-    thumbnail: thumbnail,
     name: name
   }, {
     new: true
   })
   .select("-__v -musics")
+
 };
 
 PlaylistSchema.statics.addMusic = async (playlistId, musicId) => {

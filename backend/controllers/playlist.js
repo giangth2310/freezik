@@ -66,24 +66,23 @@ const deletePlaylist = async (req, res) => {
   try {
     var playlist = new Object();
     playlist._id = req.query.playlistId;
-    playlist.authorId = req.query.authorId;
 
+    
     if (!req.query.musicId) {
+      var pl = await Playlist.getPlaylist(req.query.playlistId);
       await Playlist.deletePlaylist(playlist);
+      
+      var playlists = await Playlist.getAll(pl.authorId);
+      res.send(playlists);
     } else {
       await Playlist.deleteMusic(playlist, req.query.musicId);
-    }
+      var pl = await Playlist.getPlaylist(req.query.playlistId);
 
-    var pl = await Playlist.getPlaylist(req.query.authorId, req.query.playlistId);
-    
-    for (var i = 0; i < pl.length; i++) {
-      for (var j = 0; j < pl[i].musics.length; j++) {
-        var music = await Music.findMusicById(pl[i].musics[j].musicId).select("-comments");
-        pl[i].musics[j] = music;    
+      for (var j = 0; j < pl.musics.length; j++) {
+        pl.musics[j] = await Music.findMusicById(pl.musics[j].musicId).select("-comments");
       }
+      res.send(pl);
     }
-
-    res.send(pl);
   } catch (error) {
     res.status(400).send({message: error.message});
   }
@@ -91,10 +90,14 @@ const deletePlaylist = async (req, res) => {
 
 const updatePlaylist = async (req, res) => {
   try {
-    var thumbnail = domain + req.file.path;
-    thumbnail = thumbnail.replace(/\\/g, "/");
+    var thumbnail = null;
+    if (req.file) {
+      thumbnail = domain + req.file.path;
+      thumbnail = thumbnail.replace(/\\/g, "/");
+    }
 
     const result = await Playlist.updatePlaylist(thumbnail, req.body.playlistId, req.body.name);
+    
     res.send(result);
   } catch (error) {
     res.status(400).send({message: error.message});

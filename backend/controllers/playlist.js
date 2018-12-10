@@ -26,7 +26,7 @@ const getPlaylists = async (req, res) => {
       var playlists = await Playlist.getAll(req.query.authorId);
       res.send(playlists);
     } else {
-      var playlist = await Playlist.getPlaylist(req.query.authorId, req.query.playlistId);
+      var playlist = await Playlist.getPlaylist(req.query.playlistId);
       for (var i = 0; i < playlist.length; i++) {
         for (var j = 0; j < playlist[i].musics.length; j++) {
           var music = await Music.findMusicById(playlist[i].musics[j].musicId).select("-comments");
@@ -102,11 +102,21 @@ const updateThumnail = async (req, res) => {
   }
 };
 
+const addMusic = async (req, res) => {
+  try {
+    const result = await Playlist.addMusic(req.body.playlistId, req.body.musicId);
+    res.send(result);
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
 module.exports = {
   getFavorite,
   getPlaylists,
   addToFavorite,
   addPlaylist,
   deletePlaylist,
-  updateThumnail
+  updateThumnail,
+  addMusic
 };

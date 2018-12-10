@@ -48,6 +48,7 @@ router.post('/musics', storage.uploadMusic, music.uploadMusic);
 router.post('/comments', music.addComment);
 router.post('/favorite', playlist.addToFavorite);
 router.post('/playlists', playlist.addPlaylist);
+router.post('/playlist', playlist.addMusic);
 
 router.put('/profile', storage.uploadAuthorAvatar, author.changeProfile);
 router.put('/password', author.changePassword);

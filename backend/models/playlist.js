@@ -29,8 +29,8 @@ PlaylistSchema.statics.getAll = (authorId) => {
   return Playlist.find({"authorId": authorId}).select('-__v -musics');
 };
 
-PlaylistSchema.statics.getPlaylist = (authorId, playlistId) => {
-  return Playlist.find({"authorId": authorId, "_id": playlistId});
+PlaylistSchema.statics.getPlaylist = (playlistId) => {
+  return Playlist.findById(playlistId);
 };
 
 PlaylistSchema.statics.addToFavorite = async (music) => {
@@ -81,6 +81,18 @@ PlaylistSchema.statics.updateThumbnail = (thumbnail, playlistId) => {
     new: true
   })
   .select("-__v -musics")
+};
+
+PlaylistSchema.statics.addMusic = async (playlistId, musicId) => {
+  const pl = await Playlist.findOne({"_id": playlistId, "musics.musicId": musicId});
+  
+  if (pl) {
+    return pl;
+  } else {
+    var playlist = await Playlist.findById(playlistId)
+    playlist.musics.push({"musicId": musicId});
+    return new Playlist(playlist).save();
+  }
 };
 
 const Playlist = mongoose.model('playlists', PlaylistSchema);

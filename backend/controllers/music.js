@@ -1,10 +1,36 @@
 var ObjectId = require('mongodb').ObjectID;
+const fs = require('fs');
 
 const { Music } = require('../models/music.js');
 const { Author } = require('../models/author.js');
 const { Playlist } = require('../models/playlist.js');
 
 const domain = "http://localhost:5000/";
+
+const getMusicStream = async (req, res) => {
+	try {
+		res.set('content-type', 'audio/mp3');
+		res.set('accept-ranges', 'bytes');
+	
+		var musicId = req.query._id;
+    var music = await Music.findMusicById(musicId);
+    console.log("get music");
+		await Music.increaseView(musicId);
+		var file = __dirname + '/public/musics/' + music.fileName;
+		
+		fs.exists(file,function(exists){
+			if(exists) {
+				var rstream = fs.createReadStream(file);
+				rstream.pipe(res);
+			} else {
+				res.send("can not find this music");
+				res.end();
+			}
+		});
+	} catch (error) {
+		res.status(400).send({message: error.message});
+	}
+};
 
 const getPopularSongs = async (req, res) => {
   try {
@@ -185,6 +211,7 @@ const deleteMusic = async (req, res) => {
 };
 
 module.exports = {
+  getMusicStream,
   getPopularSongs,
   getRecommendedSongs,
   getComments,

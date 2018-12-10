@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const MusicSchema = mongoose.Schema({
   name: {
     type: String,
@@ -36,6 +35,10 @@ const MusicSchema = mongoose.Schema({
     }
   }]
 });
+
+MusicSchema.statics.increaseView = (musicId) => {
+  return Music.updateOne({"_id": musicId}, {$inc: {"views": 1}});
+};
 
 MusicSchema.statics.getPopularSongs = () => {
   return Music.aggregate([

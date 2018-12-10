@@ -79,7 +79,20 @@ MusicSchema.statics.addComment = async (comment) => {
   var music = await Music.findById(comment.musicId);
   music.comments.push({"authorId": comment.authorId, "content": comment.content});
   return new Music(music).save();
-}
+};
+
+MusicSchema.statics.searchByName = async (queryName) => {
+  return await Music.find({
+    $text: {$search: queryName}
+  }, {
+    score: {$meta: "textScore"}
+  })
+  .sort({score:{$meta:"textScore"}})
+  .limit(10)
+  .select("-__v");
+};
+
+MusicSchema.index({"name": "text"});
 
 const Music = mongoose.model('musics', MusicSchema);
 

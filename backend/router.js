@@ -40,6 +40,7 @@ router.get('/home/recommended-songs', music.getRecommendedSongs);
 router.get('/comments', music.getComments);
 router.get('/favorite', playlist.getFavorite);
 router.get('/playlists', playlist.getPlaylists);
+router.get('/search', music.search);
 
 router.post('/login', author.login);
 router.post('/sign-up', author.signup);

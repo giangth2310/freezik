@@ -126,11 +126,27 @@ const addComment = async (req, res) => {
   }
 };
 
+const search  = async (req, res) => {
+  try {
+    const query = req.query.q;
+    if (query.includes("author")) {
+      const result  = await Author.searchByName(query);
+      res.send(result);
+    } else {
+      const result  = await Music.searchByName(query);
+      res.send(result);
+    }
+  } catch (error) {
+    res.status(400).send({message: error.message});
+  }
+};
+
 module.exports = {
   getPopularSongs,
   getRecommendedSongs,
   getComments,
   uploadMusic,
   getMusic,
-  addComment
+  addComment,
+  search
 };

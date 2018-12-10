@@ -87,6 +87,19 @@ AuthorSchema.statics.changePassword = (author) => {
   })
 };
 
+AuthorSchema.statics.searchByName = async (queryName) => {
+  return await Author.find({
+    $text: {$search: queryName}
+  }, {
+    score: {$meta: "textScore"}
+  })
+  .sort({score:{$meta:"textScore"}})
+  .select("-__v -password")
+  .limit(10)
+};
+
+AuthorSchema.index({"name": "text"});
+
 const Author = mongoose.model('authors', AuthorSchema);
 
 module.exports = {

@@ -31,7 +31,9 @@ class Play extends Component {
     .then(response => {
       delete response.data.comments;
       this.setState({
-        ...response.data
+        ...response.data,
+        played: 0,
+        playedSeconds: 0.00,
       })
     })
     .catch(err => {

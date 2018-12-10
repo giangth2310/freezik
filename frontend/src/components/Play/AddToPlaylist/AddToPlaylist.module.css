@@ -1,6 +1,43 @@
 .container {
   display: flex;
   flex-flow: column;
-  max-height: 200px;
-  overflow-y: scroll;
+  margin-top: 10px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.thumbnail {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  margin: 0 10px;
+}
+
+.addBtn {
+  height: 32px;
+  width: 50px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  border: 2px solid #333333;
 }

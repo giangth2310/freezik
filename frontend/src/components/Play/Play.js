@@ -245,7 +245,9 @@ class Play extends Component {
       )
     }
 
-    const addToPlaylist = this.state.showAddPlaylist ? <AddToPlaylist userId={this.props.auth._id} ></AddToPlaylist> : null;
+    const addToPlaylist = this.state.showAddPlaylist ? (
+      <AddToPlaylist userId={this.props.auth._id} musicId={this.props.match.params._id} ></AddToPlaylist>
+    ) : null;
 
     return (
       <div className={classes.container}>

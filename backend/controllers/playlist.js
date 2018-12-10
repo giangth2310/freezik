@@ -27,12 +27,11 @@ const getPlaylists = async (req, res) => {
       res.send(playlists);
     } else {
       var playlist = await Playlist.getPlaylist(req.query.playlistId);
-      for (var i = 0; i < playlist.length; i++) {
-        for (var j = 0; j < playlist[i].musics.length; j++) {
-          var music = await Music.findMusicById(playlist[i].musics[j].musicId).select("-comments");
-          playlist[i].musics[j] = music;    
-        }
+      for (var j = 0; j < playlist.musics.length; j++) {
+        var music = await Music.findMusicById(playlist.musics[j].musicId).select("-comments");
+        playlist.musics[j] = music;    
       }
+      
       res.send(playlist);
     }
   } catch (error) {

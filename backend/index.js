@@ -20,7 +20,7 @@ const MONGODB_URI = "mongodb://dinhgiang11:dinhgiang1198@ds025802.mlab.com:25802
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-require('./seed.js');
+// require('./seed.js');
 
 app.use('/public', express.static(__dirname + '/public'));
 

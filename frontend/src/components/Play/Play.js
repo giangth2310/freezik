@@ -6,6 +6,7 @@ import axios from 'axios';
 import Icon from '@material-ui/core/Icon';
 import { Avatar } from '@material-ui/core';
 import TextareaAutosize from 'react-autosize-textarea';
+import AddToPlaylist from './AddToPlaylist/AddToPlaylist';
 
 class Play extends Component {
   state = {
@@ -16,6 +17,8 @@ class Play extends Component {
     loop: false,
     volume: 0.8,
     played: 0,
+    playedSeconds: 0.00,
+    showAddPlaylist: false
   }
 
   componentDidMount() {
@@ -68,6 +71,14 @@ class Play extends Component {
     if (this.state._id !== this.props.match.params._id) {
       this.componentDidMount();
     }
+  }
+
+  toggleAddPlaylist = () => {
+    this.setState(prevState => {
+      return {
+        showAddPlaylist: !prevState.showAddPlaylist
+      }
+    })
   }
 
   onProgress = state => {
@@ -234,6 +245,8 @@ class Play extends Component {
       )
     }
 
+    const addToPlaylist = this.state.showAddPlaylist ? <AddToPlaylist userId={this.props.auth._id} ></AddToPlaylist> : null;
+
     return (
       <div className={classes.container}>
         <div className={classes.left}>
@@ -258,6 +271,7 @@ class Play extends Component {
               <Icon onClick={this.onSkipPrev}>skip_previous</Icon>
               <Icon onClick={this.playPause}>{this.state.playing ? 'pause' : 'play_arrow'}</Icon>
               <Icon onClick={this.onSKipNext}>skip_next</Icon>
+              <span>{`${('0' + Math.floor(this.state.playedSeconds/60)).slice(-2)}:${('0' + Math.floor(this.state.playedSeconds%60)).slice(-2)}`}</span>
               <input
                 className={classes.seekInput}
                 type='range' min={0} max={1} step='any'
@@ -276,7 +290,7 @@ class Play extends Component {
           <div className={classes.btnContainer}>
             <div className={classes.btns}>
               {favoriteButton}
-              <div className={classes.addToPlaylist}>
+              <div className={classes.addToPlaylist} onClick={this.toggleAddPlaylist}>
                 <Icon>playlist_add</Icon>
                 Add to playlist
               </div>
@@ -286,6 +300,7 @@ class Play extends Component {
               {this.state.views}
             </div>
           </div>
+          {addToPlaylist}
           <form className={classes.writeCmt} onSubmit={this.onAddComment}>
             <div className={classes.formContent}>
               <Avatar alt={this.props.auth.name} src={this.props.auth.avatar} className={classes.avatar}></Avatar>

@@ -14,7 +14,6 @@ class Playlist extends Component {
   componentDidMount() {
     axios.get(`/playlists?authorId=${this.props.auth._id}`)
     .then(response => {
-      console.log(response.data);
       this.setState({
         playlist: response.data.reverse()
       })
@@ -26,11 +25,10 @@ class Playlist extends Component {
 
   addNewPlaylist = () => {
     axios.post('/playlists', {
-      name: 'New playlist' + this.state.playlist.length,
+      name: 'New playlist ' + this.state.playlist.length,
       authorId: this.props.auth._id
     })
     .then(response => {
-      console.log(response.data);
       this.setState(prevState => {
         return {
           playlist: [response.data, ...prevState.playlist]

@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  max-height: 200px;
+  overflow-y: scroll;
+}

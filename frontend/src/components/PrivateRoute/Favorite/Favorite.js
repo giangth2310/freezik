@@ -14,10 +14,11 @@ class Favorite extends Component {
   componentDidMount() {
     axios.get(`/favorite?authorId=${this.props.auth._id}`)
     .then(response => {
-      console.log(response.data);
-      this.setState({
-        favorite: response.data.musics
-      })
+      if (response.data) {
+        this.setState({
+          favorite: response.data.musics
+        })
+      }
     })
     .catch(err => {
       console.log(err);

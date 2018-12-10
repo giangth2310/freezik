@@ -3,10 +3,12 @@ import classes from './PlaylistItem.module.css';
 import Icon from '@material-ui/core/Icon';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { Dialog } from '@material-ui/core';
 
 class PlaylistItem extends Component {
   state = {
-    hover: false
+    hover: false,
+    editing: false
   }
 
   componentDidMount() {
@@ -51,6 +53,18 @@ class PlaylistItem extends Component {
     })
   }
 
+  onCloseDialog = () => {
+    this.setState({
+      editing: false
+    })
+  }
+
+  onEdit = () => {
+    this.setState({
+      editing: true
+    })
+  }
+
   render() {
     return (
       <div className={classes.playlist} onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
@@ -60,13 +74,16 @@ class PlaylistItem extends Component {
             <Icon onClick={this.onPlay}>
               play_circle_filled_white
             </Icon>
-            <Icon className={classes.edit}>edit</Icon>
+            <Icon className={classes.edit} onClick={this.onEdit}>edit</Icon>
             <Icon className={classes.close} onClick={this.deletePlaylist}>close</Icon>
           </div>) : null}
         </div>
         <div className={classes.playlistName}>
           {this.props.name}
         </div>
+        <Dialog open={this.state.editing} onBackdropClick={this.onCloseDialog}>
+          nani
+        </Dialog>
       </div>
     )
   }

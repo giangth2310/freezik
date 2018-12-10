@@ -57,7 +57,10 @@ class PlaylistItem extends Component {
 
   onCloseDialog = () => {
     this.setState({
-      editing: false
+      editing: false,
+      name: this.props.name,
+      thumbnail: this.props.thumbnail,
+      newThumbnail: null
     })
   }
 

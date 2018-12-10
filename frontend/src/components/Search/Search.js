@@ -53,7 +53,7 @@ class Search extends Component {
               <Fragment key={index}>
                 <div className={classes.item} onClick={() => this.onItemClick(el._id)}>
                   <img src={el.image} alt={el.name} className={classes.image}></img>
-                  <div className={classes.content}>
+                  <div>
                     <div className={classes.name}>{el.name}</div>
                     <div>{el.artist}</div>
                   </div>

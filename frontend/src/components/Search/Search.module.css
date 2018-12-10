@@ -48,3 +48,7 @@
   font-size: 24px;
   margin-right: 10px;
 }
+
+.views > span {
+  margin-right: 10px;
+}

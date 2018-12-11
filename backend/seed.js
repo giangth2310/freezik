@@ -164,12 +164,12 @@ const music = [{
   }]
 }, {
   _id: new ObjectID(),
-  name: "Say you do",
+  name: "Vì tôi còn sống",
   authorId: author[2]._id,
-  image: "http://localhost:5000/public/music_image/sayyoudo.jpg",
+  image: "http://localhost:5000/public/music_image/vitoiconsong.jpg",
   views: 1234,
   artist: "Tiên Tiên",
-  fileName: "sayyoudo.mp3"
+  fileName: "vitoiconsong.mp3"
 }, {
   _id: new ObjectID(),
   name: "Vô tình",

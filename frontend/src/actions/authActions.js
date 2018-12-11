@@ -34,7 +34,15 @@ export const login = (email, password) => {
     .then(resp => {
       dispatch(loginSuccess(resp.data));
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      dispatch(loginFail());
+    })
+  }
+}
+
+export const errorFixing = () => {
+  return {
+    type: actionTypes.ERROR_FIXING
   }
 }
 
@@ -43,6 +51,12 @@ export const loginSuccess = (payload) => {
   return {
     type: actionTypes.LOGIN_SUCCESS,
     payload
+  }
+}
+
+export const loginFail = () => {
+  return {
+    type: actionTypes.LOGIN_FAIL
   }
 }
 

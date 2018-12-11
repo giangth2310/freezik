@@ -3,5 +3,7 @@ export const HIDE_LOG_IN = 'HIDE_LOG_IN';
 export const SHOW_SIGN_UP = 'SHOW_SIGN_UP';
 export const HIDE_SIGN_UP = 'HIDE_SIGN_UP';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+export const ERROR_FIXING = 'ERROR_FIXING';
 export const SAVE_PROFILE_SUCCESS = 'SAVE_PROFILE_SUCCESS';

@@ -71,12 +71,18 @@ class Header extends Component {
   }
 
   onLoginEmailChange = e => {
+    if (this.props.auth.error) {
+      this.props.errorFixing();
+    }
     this.setState({
       loginEmail: e.target.value
     })
   }
 
   onLoginPasswordChange = e => {
+    if (this.props.auth.error) {
+      this.props.errorFixing();
+    }
     this.setState({
       loginPassword: e.target.value
     })
@@ -182,6 +188,11 @@ class Header extends Component {
         <div className={classes.loginHeader}>
           Log in Freezik
         </div>
+        {this.props.auth.error ? (
+          <div className={classes.errMessage}>
+            Invalid email or password
+          </div>
+        ) : null}
         <form onSubmit={this.onSubmitLogin} className={classes.loginForm}>
           <TextField variant='outlined'
             value={this.state.loginEmail}

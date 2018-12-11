@@ -5,7 +5,8 @@ let initialState = {
   isAuthenticated: false,
   showLogin: false,
   showSignup: false,
-  avatar: DefaultAvatar
+  avatar: DefaultAvatar,
+  error: false
 }
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -19,6 +20,16 @@ if (user) {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.ERROR_FIXING:
+      return {
+        ...state,
+        error: false
+      }
+    case actionTypes.LOGIN_FAIL:
+      return {
+        ...state,
+        error: true
+      }
     case actionTypes.SAVE_PROFILE_SUCCESS:
       return {
         ...state,

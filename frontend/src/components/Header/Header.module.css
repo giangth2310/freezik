@@ -86,7 +86,6 @@
 
 .signupDialog {
   width: 400px;
-  height: 620px;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -252,4 +251,8 @@
 
 .navLink > span:nth-child(2) {
   margin-left: 10px;
+}
+
+.errMessage {
+  color: rgb(225, 0, 80);
 }

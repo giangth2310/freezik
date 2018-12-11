@@ -18,40 +18,46 @@ class Play extends Component {
     volume: 0.8,
     played: 0,
     playedSeconds: 0.00,
-    showAddPlaylist: false
+    showAddPlaylist: false,
+    updating: false
   }
 
-  componentDidMount() {
+  fetchData = async () => {
     const { _id } = this.props.match.params;
-    axios.get(`/musicData`, {
-      params: {
-      musicId: _id,
-      authorId: this.props.auth._id
-    }})
-    .then(response => {
+    try {
+      const response = await axios.get(`/musicData`, {
+        params: {
+        musicId: _id,
+        authorId: this.props.auth._id
+      }})
       delete response.data.comments;
       this.setState({
         ...response.data,
         played: 0,
         playedSeconds: 0.00,
       })
-    })
-    .catch(err => {
+    } catch (err) {
       console.log(err);
-    })
+    }
+  }
 
-    axios.get(`/comments?musicId=${_id}`)
-    .then(response => {
+  fetchComment = async () => {
+    const { _id } = this.props.match.params;
+    try {
+      const response = await axios.get(`/comments?musicId=${_id}`)
       this.setState({
         comments: response.data
       })
-    })
-    .catch(err => {
+    } catch (err) {
       console.log(err);
-    })
-    if (!this.props.location.state) {
-      axios.get(`/home/recommended-songs?_id=${_id}`)
-      .then(response => {
+    }
+  }
+
+  fetchRecommended = async () => {
+    const { _id } = this.props.match.params;
+    try {
+      if (!this.props.location.state) {
+        const response = await axios.get(`/home/recommended-songs?_id=${_id}`)
         let playingIndex = response.data.findIndex(el => el._id === _id);
         let playingQueue = [...response.data];
         if (playingIndex === -1) {
@@ -65,22 +71,36 @@ class Play extends Component {
           playingQueue,
           playingIndex
         })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    } else {
-      setTimeout(() => {
-        this.setState({
-          ...this.props.location.state
-        })
-      }, 0);
+      } else {
+        setTimeout(() => {
+          this.setState({
+            ...this.props.location.state
+          })
+        }, 0);
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 
+  componentDidMount() {
+    this.fetchData();
+    this.fetchComment();
+    this.fetchRecommended();
+  }
+
   componentDidUpdate() {
-    if (this.state._id !== this.props.match.params._id) {
-      this.componentDidMount();
+    if (this.state._id !== this.props.match.params._id && !this.state.updating) {
+      this.setState({
+        updating: true
+      }, async () => {
+        await this.fetchData();
+        await this.fetchComment();
+        await this.fetchRecommended();
+        this.setState({
+          updating: false
+        })
+      })
     }
   }
 

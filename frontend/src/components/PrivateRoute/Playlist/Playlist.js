@@ -41,8 +41,6 @@ class Playlist extends Component {
   }
 
   deletePlaylist = (index) => {
-    console.log(index);
-    console.log(this.state.playlist);
     this.setState(prevState => {
       const newPlaylist = [...prevState.playlist];
       newPlaylist.splice(index, 1);

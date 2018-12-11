@@ -65,7 +65,7 @@ class Header extends Component {
       password: this.state.signupPassword
     })
       .then(resp => {
-        console.log(resp.data);
+        this.props.loginSuccess(resp.data);
       })
       .catch(err => console.log(err));
   }

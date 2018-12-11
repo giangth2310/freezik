@@ -19,7 +19,6 @@ class Search extends Component {
     const params = parse_query_string(this.props.location.search);
     axios.get(`/search?q=${params.q}`)
     .then(response => {
-      console.log(response.data);
       this.setState({
         results: response.data,
         q: params.q

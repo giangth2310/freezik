@@ -25,7 +25,6 @@ class Home extends Component {
       .catch(err => console.log(err))
     axios.get('/home/recommended-songs')
       .then(resp => {
-        console.log(resp.data);
         this.setState({
           recommendedSongs: resp.data
         })
@@ -33,7 +32,6 @@ class Home extends Component {
       .catch(err => console.log(err))
     axios.get('/home/popular-songs')
       .then(resp => {
-        console.log(resp.data);
         this.setState({
           popularSongs: resp.data
         })

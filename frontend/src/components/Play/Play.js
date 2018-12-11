@@ -55,7 +55,6 @@ class Play extends Component {
         let playingIndex = response.data.findIndex(el => el._id === _id);
         let playingQueue = [...response.data];
         if (playingIndex === -1) {
-          console.log(playingQueue);
           const { artist, authorId, fileName, image, name, views,_id } = this.state;
           playingIndex = 0;
           playingQueue = [{
@@ -167,7 +166,6 @@ class Play extends Component {
       content: this.state.cmtVal
     })
     .then(response => {
-      console.log(response.data);
       this.setState({
         comments: response.data,
         cmtVal: ''

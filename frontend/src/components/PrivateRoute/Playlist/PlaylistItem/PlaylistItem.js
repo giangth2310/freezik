@@ -16,7 +16,6 @@ class PlaylistItem extends Component {
   componentDidMount() {
     axios.get(`/playlists?playlistId=${this.props._id}`)
     .then(response => {
-      console.log(response);
       this.setState({
         ...response.data
       })

@@ -19,7 +19,6 @@ class Upload extends Component {
   componentDidMount() {
     axios.get(`/musics?authorId=${this.props.auth._id}`)
     .then(response => {
-      console.log(response.data);
       this.setState({
         upload: response.data
       })
@@ -32,7 +31,6 @@ class Upload extends Component {
   onDelete = (index) => {
     axios.delete(`/musics?musicId=${this.state.upload[index]._id}`)
     .then(response => {
-      console.log(response.data);
       const newUpload = [...this.state.upload].filter((el, i) => i !== index);
       this.setState({
         upload: newUpload

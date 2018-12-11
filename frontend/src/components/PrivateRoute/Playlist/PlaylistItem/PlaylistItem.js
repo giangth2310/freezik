@@ -38,7 +38,7 @@ class PlaylistItem extends Component {
   }
 
   onPlay = () => {
-    this.props.history.push(`/play/music/${this.props._id}`, {
+    this.props.history.push(`/play/music/${this.state.musics[0]._id}`, {
       playingQueue: this.state.musics,
       playingIndex: 0
     });

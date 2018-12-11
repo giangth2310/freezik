@@ -14,10 +14,8 @@ const getMusicStream = async (req, res) => {
 	
 		var musicId = req.query._id;
     var music = await Music.findMusicById(musicId);
-    console.log("get music");
 		await Music.increaseView(musicId);
-		var file = __dirname + '/public/musics/' + music.fileName;
-		
+		var file = __dirname + '/../public/musics/' + music.fileName;
 		fs.exists(file,function(exists){
 			if(exists) {
 				var rstream = fs.createReadStream(file);
@@ -87,9 +85,8 @@ const uploadMusic = async (req, res) => {
   
     if (req.files) {
       music.image = domain + req.files.image[0].path;
-      music.fileName = domain + req.files.music[0].path;
+      music.fileName = req.files.music[0].filename;
       music.image = music.image.replace(/\\/g, "/");
-      music.fileName = music.fileName.replace(/\\/g, "/");
     }
     
     const result = await Music.upload(music);

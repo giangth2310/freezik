@@ -15,7 +15,9 @@ const getMusicStream = async (req, res) => {
 		var musicId = req.query._id;
     var music = await Music.findMusicById(musicId);
 		await Music.increaseView(musicId);
-		var file = __dirname + '/../public/musics/' + music.fileName;
+    var file = __dirname + '/../public/musics/' + music.fileName;
+    console.log(file);
+    
 		fs.exists(file,function(exists){
 			if(exists) {
 				var rstream = fs.createReadStream(file);

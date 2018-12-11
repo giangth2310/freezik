@@ -52,7 +52,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.HIDE_LOG_IN:
       return {
         ...state,
-        showLogin: false
+        showLogin: false,
+        error: false
       }
     case actionTypes.SHOW_LOG_IN:
       return {

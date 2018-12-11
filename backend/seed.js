@@ -164,14 +164,6 @@ const music = [{
   }]
 }, {
   _id: new ObjectID(),
-  name: "Vì tôi còn sống",
-  authorId: author[2]._id,
-  image: "http://localhost:5000/public/music_image/vitoiconsong.jpg",
-  views: 1234,
-  artist: "Tiên Tiên",
-  fileName: "vitoiconsong.mp3"
-}, {
-  _id: new ObjectID(),
   name: "Vô tình",
   authorId: author[7]._id,
   image: "http://localhost:5000/public/music_image/votinh.jpg",
@@ -232,6 +224,14 @@ const music = [{
   image: "http://localhost:5000/public/music_image/hontroi.jpg",
   artist: "Yun x Dr A",
   fileName: "hontroi.mp3"
+}, {
+  _id: new ObjectID(),
+  name: "My everything",
+  authorId: author[2]._id,
+  image: "http://localhost:5000/public/music_image/myeverything.jpg",
+  views: 1234,
+  artist: "Tiên Tiên",
+  fileName: "myeverything.mp3"
 }, {
   _id: new ObjectID(),
   name: "Có thể",

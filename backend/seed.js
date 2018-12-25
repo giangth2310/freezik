@@ -199,7 +199,7 @@ const music = [{
   name: "Hongkong1",
   authorId: author[10]._id,
   image: "http://localhost:5000/public/music_image/hongkong1.jpg",
-  views: 12341,
+  views: 10,
   artist: "Nguyễn Trọng Tài",
   fileName: "hongkong1.mp3"
 }, {

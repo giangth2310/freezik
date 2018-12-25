@@ -24,6 +24,8 @@ const getPlaylists = async (req, res) => {
   try {
     if (!req.query.playlistId) {
       var playlists = await Playlist.getAll(req.query.authorId);
+      playlists.reverse();
+      
       res.send(playlists);
     } else {
       var playlist = await Playlist.getPlaylist(req.query.playlistId);
@@ -54,7 +56,7 @@ const addPlaylist = async (req, res) => {
   try {
     var playlist = req.body;
     playlist.thumbnail = "http://localhost:5000/public/playlist_thumbnails/mymusic.jpg";
-    
+    console.log(playlist);
     const result = await Playlist.addPlaylist(playlist);
     res.send(result);
   } catch (error) {

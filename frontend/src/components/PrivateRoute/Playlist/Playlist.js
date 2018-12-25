@@ -31,7 +31,7 @@ class Playlist extends Component {
     .then(response => {
       this.setState(prevState => {
         return {
-          playlist: [response.data, ...prevState.playlist]
+          playlist: [ ...prevState.playlist, response.data]
         }
       })
     })

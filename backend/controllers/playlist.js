@@ -24,7 +24,6 @@ const getPlaylists = async (req, res) => {
   try {
     if (!req.query.playlistId) {
       var playlists = await Playlist.getAll(req.query.authorId);
-      playlists.reverse();
       
       res.send(playlists);
     } else {

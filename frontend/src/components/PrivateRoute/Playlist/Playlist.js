@@ -15,7 +15,7 @@ class Playlist extends Component {
     axios.get(`/playlists?authorId=${this.props.auth._id}`)
     .then(response => {
       this.setState({
-        playlist: response.data.reverse()
+        playlist: response.data
       })
     })
     .catch(err => {
@@ -40,10 +40,10 @@ class Playlist extends Component {
     })
   }
 
-  deletePlaylist = (index) => {
+  deletePlaylist = (id) => {
     this.setState(prevState => {
       const newPlaylist = [...prevState.playlist];
-      newPlaylist.splice(index, 1);
+      newPlaylist.splice(newPlaylist.findIndex(el => el._id === id), 1);
       return {
         playlist: newPlaylist
       }
@@ -79,7 +79,7 @@ class Playlist extends Component {
               return (
                 <Grid item xs={3} key={index}>
                   <PlaylistItem {...el} userId={this.props.auth._id} 
-                    onDelete={() => this.deletePlaylist(index)}
+                    onDelete={() => this.deletePlaylist(el._id)}
                     updatePlaylist={(info) => this.updatePlaylist(index, info)} ></PlaylistItem>
                 </Grid>
               )

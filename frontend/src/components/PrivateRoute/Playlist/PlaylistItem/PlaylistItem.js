@@ -10,20 +10,36 @@ class PlaylistItem extends Component {
   state = {
     hover: false,
     editing: false,
-    musics: []
+    musics: [],
+    updating: false
   }
 
-  componentDidMount() {
-    axios.get(`/playlists?playlistId=${this.props._id}`)
-    .then(response => {
-      console.log(response.data);
+  fetchData = async () => {
+    try {
+      const response = await axios.get(`/playlists?playlistId=${this.props._id}`);
       this.setState({
         ...response.data
       })
-    })
-    .catch(err => {
+    } catch (err) {
       console.log(err);
-    })
+    }
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  componentDidUpdate() {
+    if (this.state._id !== this.props._id && !this.state.updating) {
+      this.setState({
+        updating: true
+      }, async () => {
+        await this.fetchData();
+        this.setState({
+          updating: false
+        })
+      })
+    }
   }
 
   onMouseOver = () => {

@@ -15,7 +15,7 @@ class Playlist extends Component {
     axios.get(`/playlists?authorId=${this.props.auth._id}`)
     .then(response => {
       this.setState({
-        playlist: response.data
+        playlist: response.data.reverse()
       })
     })
     .catch(err => {
@@ -31,7 +31,7 @@ class Playlist extends Component {
     .then(response => {
       this.setState(prevState => {
         return {
-          playlist: [ ...prevState.playlist, response.data]
+          playlist: [response.data, ...prevState.playlist]
         }
       })
     })

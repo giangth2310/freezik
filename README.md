@@ -1,5 +1,7 @@
 # FREEZIK
 
+![preview](./preview.jpg)
+
 ## Tech used
 
 * ReactJS
